@@ -11,10 +11,10 @@ def seed_posts():
         created_by=10, community_id=1, post_title='The Making of the Perfect Martini', post_body='Lithography, 2000, Guy Buffet', ext_url='/images/martini.jpg'
     )
     post3 = Post(
-        created_by=1, community_id=2, post_title='What if God came down one day and said', post_body='"Its pronounced Jod" then left?'
+        created_by=1, community_id=2, post_title='What if God came down one day and said', post_body="'Its pronounced Jod' then left?"
     )
     post4 = Post(
-        created_by=2, community_id=2, post_title='Bill Gates said, "I will always choose a lazy person to do a difficult job because a lazy person will find an easy way to do it."', post_body='Whats a real-life example of this?'
+        created_by=2, community_id=2, post_title="Bill Gates said, 'I will always choose a lazy person to do a difficult job because a lazy person will find an easy way to do it.'", post_body='Whats a real-life example of this?'
     )
     post5 = Post(
         created_by=2, community_id=3, post_title='Illinois House passes bill prohibiting book bans', ext_url='https://www.wgem.com/2023/03/23/illinois-house-passes-bill-prohibiting-book-bans/'
@@ -26,7 +26,7 @@ def seed_posts():
         created_by=6, community_id=4, post_title='[I ate] a taco box', post_body='Soo good!', ext_url='/images/taco.jpg'
     )
     post8 = Post(
-        created_by=11, community_id=4, post_title='[Pro/Chef] “Raspbaby Yoda” Raspberry Pie', ext_url='images/yodapie.jpg'
+        created_by=11, community_id=4, post_title="[Pro/Chef] 'Raspbaby Yoda' Raspberry Pie", ext_url='images/yodapie.jpg'
     )
     post9 = Post(
         created_by=11, community_id=5, post_title='Sheep in Human Clothing', ext_url='/images/sheep.png'
@@ -44,19 +44,19 @@ def seed_posts():
         created_by=13, community_id=7, post_title='3,000-year-old underwater castle discovered in Turkeys largest lake', ext_url='https://inhabitat.com/3000-year-old-underwater-castle-discovered-in-turkeys-largest-lake/'
     )
     post14 = Post(
-        created_by=2, community_id=7, post_title='700-year-old Knights Templar cave discovered in England', ext_url='https://www.bbc.com/news/uk-england-39193347'
+        created_by=2, community_id=7, post_title='700 year old Knights Templar cave discovered in England', ext_url='https://www.bbc.com/news/uk-england-39193347'
     )
     post15 = Post(
-        created_by=4, community_id=8, post_title='Tom Hanks as Mister Rogers on the set of "You Are My Friend"', post_body='We miss you, Mister Rogers!', ext_url='images/tom.jpg'
+        created_by=4, community_id=8, post_title="Tom Hanks as Mister Rogers on the set of 'You Are My Friend'", post_body='We miss you, Mister Rogers!', ext_url='images/tom.jpg'
     )
     post16 = Post(
-        created_by=8, community_id=8, post_title='This "Deadpool 2" poster', post_body='My favorite poster by far. What do you think?', ext_url='images/deadpool.jpg'
+        created_by=8, community_id=8, post_title="This 'Deadpool 2' poster", post_body='My favorite poster by far. What do you think?', ext_url='images/deadpool.jpg'
     )
     post17 = Post(
         created_by=5, community_id=9, post_title='A song I wrote just for Posterra', post_body='Enjoy!', ext_url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
     )
     post18 = Post(
-        created_by=14, community_id=9, post_title='Jamie Lee Curtis leading the charge for earlier concerts: "I want to hear Coldplay at 1PM"', ext_url='https://www.audacy.com/1053davefm/news/jamie-lee-curtis-leading-the-charge-for-earlier-concerts'
+        created_by=14, community_id=9, post_title="Jamie Lee Curtis leading the charge for earlier concerts: 'I want to hear Coldplay at 1PM'", ext_url='https://www.audacy.com/1053davefm/news/jamie-lee-curtis-leading-the-charge-for-earlier-concerts'
     )
     post19 = Post(
         created_by=8, community_id=10, post_title='Campbell will acquire Raos premium sauces parent company for $2.7 billion', ext_url='https://abcnews.go.com/GMA/Food/campbell-acquire-raos-premium-sauces-parent-company-27/story?id=102071512'
@@ -89,16 +89,16 @@ def seed_posts():
         created_by=3, community_id=14, post_title='What 10,000 horsepower does to a drag tire at launch', ext_url='images/tire.jpg'
     )
     post29 = Post(
-        created_by=4, community_id=15, post_title='Stranger Things 5: Will Takes "Center Stage" in final Season', ext_url='https://tvline.com/previews/stranger-things-season-5-spoilers-will-vecna-connection-1235024449/'
+        created_by=4, community_id=15, post_title="Stranger Things 5: Will Takes 'Center Stage' in final Season", ext_url='https://tvline.com/previews/stranger-things-season-5-spoilers-will-vecna-connection-1235024449/'
     )
     post30 = Post(
-        created_by=7, community_id=15, post_title='Giving Back', post_body='"The Office" Star Leslie David Baker Is Giving Back $110,000 Worth of Fan Donations for Stalled Stanley Spinoff, Says Funds Were Never Used for Personal Matters', ext_url='https://variety.com/2023/tv/news/the-office-actor-returns-fan-donations-stnaley-spinoff-1235687187/'
+        created_by=7, community_id=15, post_title='Giving Back', post_body="'The Office' Star Leslie David Baker Is Giving Back $110,000 Worth of Fan Donations for Stalled Stanley Spinoff, Says Funds Were Never Used for Personal Matters", ext_url='https://variety.com/2023/tv/news/the-office-actor-returns-fan-donations-stnaley-spinoff-1235687187/'
     )
     post31 = Post(
         created_by=10, community_id=16, post_title='This is what happens when one company owns dozens of local news stations', post_body='Uncanny valley vibes...', ext_url='https://www.youtube.com/watch?v=hWLjYJ4BzvI&feature=youtu.be'
     )
     post32 = Post(
-        created_by=9, community_id=16, post_title='Roughly the first five seconds of "Never Gonna Give You Up" is now a silent Sony Music title card that displays copyright and licensing information, essentially ruining Rick Rolling', ext_url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        created_by=9, community_id=16, post_title="Roughly the first five seconds of 'Never Gonna Give You Up' is now a silent Sony Music title card that displays copyright and licensing information, essentially ruining Rick Rolling", ext_url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
     )
 
 
