@@ -61,6 +61,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_by', sa.Integer(), nullable=True),
     sa.Column('community_id', sa.Integer(), nullable=True),
+    sa.Column('post_title', sa.String(length=50), nullable=False),
     sa.Column('post_body', sa.String(), nullable=True),
     sa.Column('edited', sa.Boolean(), nullable=True),
     sa.Column('ext_url', sa.String(), nullable=True),

@@ -13,6 +13,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     community_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('communities.id')))
+    post_title = db.Column(db.String(50), nullable=False)
     post_body = db.Column(db.String)
     edited = db.Column(db.Boolean, default=False)
     ext_url = db.Column(db.String)
