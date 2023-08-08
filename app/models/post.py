@@ -30,6 +30,7 @@ class Post(db.Model):
             'id': self.id,
             'created_by': self.created_by,
             'community_id': self.community_id,
+            'post_title': self.post_title,
             'post_body': self.post_body,
             'edited': self.edited,
             'ext_url': self.ext_url,
