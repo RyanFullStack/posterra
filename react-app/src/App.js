@@ -5,6 +5,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Community from "./components/Community";
+import CommunityForm from "./components/CommunityForm";
+import PostForm from "./components/PostForm";
 import './index.css'
 
 function App() {
@@ -22,6 +24,12 @@ function App() {
       <Switch>
         <Route exact path="/" >
           <HomePage />
+        </Route>
+        <Route path='/communities/new'>
+          <CommunityForm />
+        </Route>
+        <Route path='/posts/new'>
+          <PostForm />
         </Route>
         <Route path='/communities/:communityId'>
           <Community />

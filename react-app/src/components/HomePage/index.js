@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { thunkGetAllPosts } from "../../store/post";
 import PostContainer from "../Post";
 import './home.css'
@@ -7,6 +8,7 @@ import './home.css'
 function HomePage() {
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch()
+    const history = useHistory()
     const allPosts = useSelector(state => state.posts.posts)
 
     useEffect(() => {
@@ -36,6 +38,8 @@ function HomePage() {
                 <div className="home-info-contents">
                     <p>HOME</p>
                     <p>Posts from around the world...</p>
+                    <button onClick={() => history.push('/posts/new')}>Create a post</button><br />
+                    <button onClick={() => history.push('/communities/new')}>Create a community</button>
                 </div>
             </div>
         </div>
