@@ -35,5 +35,7 @@ class Post(db.Model):
             'edited': self.edited,
             'ext_url': self.ext_url,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'owner': self.owner.to_dict(),
+            'community': self.community.to_dict()
         }

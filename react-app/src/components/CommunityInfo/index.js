@@ -1,23 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { getUserInfo } from '../../store/post';
+import { useSelector } from 'react-redux'
 import './communityinfo.css'
 
 
 function CommunityInfo() {
-    const dispatch = useDispatch()
     const community = useSelector(state => state.communities.singleCommunity)
-    const [owner, setOwner] = useState()
-
-    useEffect(() => {
-        const data = async() => {
-            const res = await dispatch(getUserInfo(community.created_by))
-            const user = await res
-            setOwner(user)
-        }
-        data()
-        //eslint-disable-next-line
-    }, [dispatch])
+    const owner = community?.owner
 
     if (!owner || !community) return <h2>Loading...</h2>
 
