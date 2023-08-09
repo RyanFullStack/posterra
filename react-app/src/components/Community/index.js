@@ -31,8 +31,6 @@ function Community() {
 
     return (
         <div className="community-container">
-            <h2>{community?.name}</h2>
-
             <div className="post-main-container">
                 {communityPosts.posts.map(post => {
                     return (

@@ -1,0 +1,9 @@
+.modal {
+    background-color: rgb(32, 32, 32);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
