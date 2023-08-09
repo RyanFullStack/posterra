@@ -45,7 +45,7 @@ function CommunityForm() {
             serverErrors.serverErrors = response.errors
             setErrors(serverErrors)
         } else {
-            history.push('/')
+            history.push(`/communities/${response.id}`)
         }
     }
 
