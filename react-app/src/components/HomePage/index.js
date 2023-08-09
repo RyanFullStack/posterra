@@ -30,7 +30,7 @@ function HomePage() {
         <div className="main-display-container">
             <div className="post-main-container">
                 {allPosts.posts.map(post => {
-                    if (sessionUser.id !== post.owner.id)
+                    if (sessionUser?.id !== post.owner.id)
                     return (
                         <PostContainer post={post} key={post.id} />
                     )

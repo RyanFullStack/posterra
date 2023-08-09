@@ -41,17 +41,17 @@ function ProfileButton({ user }) {
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+            <p>Hey, {user.username.toLowerCase().split('')[0].toUpperCase() + user.username.toLowerCase().slice(1)}</p>
+            <p>{user.email}</p>
+            <p>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
+            </p>
           </>
         ) : null}
-      </ul>
+      </div>
     </>
   );
 }
