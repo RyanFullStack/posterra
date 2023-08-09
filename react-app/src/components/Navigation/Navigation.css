@@ -10,5 +10,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1rem 1rem;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(32, 32, 32);
+  outline: 1px solid rgb(82, 82, 82);
 }
