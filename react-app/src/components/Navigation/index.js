@@ -36,13 +36,11 @@ function Navigation({ isLoaded }) {
 	};
 
 	return (
-		<div>
-			<NavLink exact to="/" onClick={resetDropdown}>
-				Posterra
-			</NavLink>
-
+		<div className='nav-container'>
 			<div>
-				{isLoaded && sessionUser && <ProfileButton user={sessionUser} />}
+				<NavLink exact to="/" onClick={resetDropdown}>
+					Posterra
+				</NavLink>
 			</div>
 
 			<div>
@@ -58,19 +56,23 @@ function Navigation({ isLoaded }) {
 				</select>
 			</div>
 
-			{!sessionUser && (
-				<div>
-					<OpenModalButton
-						buttonText="Log In"
-						modalComponent={<LoginFormModal />}
-					/>
+			<div>
+				{isLoaded && sessionUser && <ProfileButton user={sessionUser} />}
 
-					<OpenModalButton
-						buttonText="Sign Up"
-						modalComponent={<SignupFormModal />}
-					/>
-				</div>
-			)}
+				{!sessionUser && (
+					<div>
+						<OpenModalButton
+							buttonText="Log In"
+							modalComponent={<LoginFormModal />}
+						/>
+
+						<OpenModalButton
+							buttonText="Sign Up"
+							modalComponent={<SignupFormModal />}
+						/>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 }
