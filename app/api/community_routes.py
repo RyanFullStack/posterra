@@ -32,18 +32,6 @@ def community_posts(id):
     return {'posts': [post.to_dict() for post in community.posts]}
 
 
-@community_routes.route('/<int:id>')
-def community(id):
-    """
-    Query for a community
-    """
-    community = Community.query.get(id)
-
-    if not community:
-        return {'message': 'community not found'}
-
-    return community.to_dict()
-
 @community_routes.route('/new', methods=['POST'])
 @login_required
 def create_community():
@@ -66,3 +54,37 @@ def create_community():
         return new_community.to_dict(), 201
 
     return {'errors': form.errors}, 401
+
+@community_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_community(id):
+    """
+    Delete a community by ID
+    """
+    community = Community.query.get(id)
+
+    if not community:
+        return {'message': 'community not found'}
+
+    if current_user.id == community.owner.id:
+        db.session.delete(community)
+        db.session.commit()
+        return {'message': f'{community.name} Deleted Successfully'}
+
+    else:
+        return {'message': 'not your community!'}
+
+
+
+
+@community_routes.route('/<int:id>')
+def community(id):
+    """
+    Query for a community
+    """
+    community = Community.query.get(id)
+
+    if not community:
+        return {'message': 'community not found'}
+
+    return community.to_dict()

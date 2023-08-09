@@ -56,6 +56,18 @@ export const thunkCreateCommunity = (data) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteCommunity = (id) => async (dispatch) => {
+    const res = await fetch(`/api/communities/${id}/delete`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetAllCommunities())
+        return data
+    } else {
+        return res
+    }
+}
 
 const initialState = { communities: null, singleCommunity: null }
 

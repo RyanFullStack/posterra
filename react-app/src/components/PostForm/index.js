@@ -55,8 +55,6 @@ function PostForm() {
             ext_url
         }
 
-        console.log('********', data)
-
         const response = await dispatch(thunkCreatePost(data))
 
         if (response.errors) {
