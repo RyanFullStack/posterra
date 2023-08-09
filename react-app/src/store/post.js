@@ -56,7 +56,20 @@ export const thunkCreatePost = (data) => async (dispatch) => {
     })
     if (res.ok) {
         const data = await res.json();
-        dispatch(thunkGetAllPosts())
+        dispatch(thunkGetCommunityPosts(data.community_id))
+        return data
+    } else {
+        return res
+    }
+}
+
+export const thunkDeletePost = (post_id, community_id) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${post_id}/delete`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetCommunityPosts(community_id))
         return data
     } else {
         return res

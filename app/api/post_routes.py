@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Community, Post, db
 from app.forms import PostForm
 
@@ -41,6 +41,27 @@ def create_post():
         return new_post.to_dict(), 201
 
     return {'errors': form.errors}, 401
+
+
+@post_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_post(id):
+    """
+    Delete a post by ID
+    """
+    post = Post.query.get(id)
+
+    if not post:
+        return {'message': 'post not found'}
+
+    if current_user.id == post.owner.id:
+        db.session.delete(post)
+        db.session.commit()
+        return {'message': f'{post.post_title} Deleted Successfully'}
+
+    else:
+        return {'message': 'not your post!'}
+
 
 @post_routes.route('/<int:id>')
 def post(id):
