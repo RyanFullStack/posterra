@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import Community, Post
+from flask import Blueprint, request
+from flask_login import login_required, current_user
+from app.models import Community, Post, db
+from app.forms import CommunityForm
 
 community_routes = Blueprint('communities', __name__)
 
@@ -42,3 +43,26 @@ def community(id):
         return {'message': 'community not found'}
 
     return community.to_dict()
+
+@community_routes.route('/new', methods=['POST'])
+@login_required
+def create_community():
+    """
+    Create a new community
+    """
+    form = CommunityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        name = form.data['name']
+        created_by = form.data['created_by']
+        description = form.data['description']
+
+        new_community = Community(name=name, created_by=created_by, description=description)
+
+        new_community.members.append(current_user)
+        db.session.add(new_community)
+        db.session.commit()
+
+        return new_community.to_dict(), 201
+
+    return {'errors': form.errors}, 401

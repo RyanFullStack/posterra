@@ -35,6 +35,28 @@ export const thunkGetSingleCommunity = (id) => async (dispatch) => {
     }
 }
 
+export const thunkCreateCommunity = (data) => async (dispatch) => {
+    const res = await fetch('/api/communities/new', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: data.name,
+            description: data.description,
+            created_by: data.created_by
+        })
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetAllCommunities())
+        return data
+    } else {
+        return res
+    }
+}
+
+
 const initialState = { communities: null, singleCommunity: null }
 
 export default function communityReducer(state = initialState, action) {

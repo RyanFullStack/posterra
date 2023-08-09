@@ -40,6 +40,29 @@ export const thunkGetCommunityPosts = (id) => async (dispatch) => {
     }
 }
 
+export const thunkCreatePost = (data) => async (dispatch) => {
+    const res = await fetch('/api/posts/new', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            post_title: data.post_title,
+            post_body: data.post_body,
+            created_by: data.created_by,
+            community_id: data.community_id,
+            ext_url: data.ext_url
+        })
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetAllPosts())
+        return data
+    } else {
+        return res
+    }
+}
+
 const initialState = { posts: null }
 
 export default function postReducer(state = initialState, action) {
