@@ -17,7 +17,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="test">
+    <div>
       <Navigation isLoaded={isLoaded} />
       <Switch>
         <Route exact path="/" >

@@ -17,6 +17,17 @@ export const thunkGetAllPosts = () => async (dispatch) => {
     }
 }
 
+export const getUserInfo = (id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${id}`)
+
+    if (res.ok) {
+        const data = await res.json()
+        return data
+    } else {
+        return res
+    }
+}
+
 export const thunkGetCommunityPosts = (id) => async (dispatch) => {
     const res = await fetch(`/api/communities/${id}/posts`)
 

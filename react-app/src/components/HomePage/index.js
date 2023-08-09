@@ -16,7 +16,7 @@ function HomePage() {
         }
         data()
 
-        return function() {
+        return function () {
             setLoaded(false)
         }
     }, [dispatch])
@@ -24,12 +24,20 @@ function HomePage() {
     if (!loaded) return <h2>Loading...</h2>
 
     return (
-        <div className="post-main-container">
-            {allPosts.posts.map(post => {
-                return (
-                    <PostContainer post={post} key={post.id} />
-                )
-            })}
+        <div className="main-display-container">
+            <div className="post-main-container">
+                {allPosts.posts.map(post => {
+                    return (
+                        <PostContainer post={post} key={post.id} />
+                    )
+                })}
+            </div>
+            <div className="home-info-container">
+                <div className="home-info-contents">
+                    <p>HOME</p>
+                    <p>Posts from around the world...</p>
+                </div>
+            </div>
         </div>
     )
 }
