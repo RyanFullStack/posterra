@@ -17,6 +17,18 @@ export const thunkGetAllPosts = () => async (dispatch) => {
     }
 }
 
+export const thunkGetCommunityPosts = (id) => async (dispatch) => {
+    const res = await fetch(`/api/communities/${id}/posts`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionGetAllPosts(data))
+        return data
+    } else {
+        return res
+    }
+}
+
 const initialState = { posts: null }
 
 export default function postReducer(state = initialState, action) {
