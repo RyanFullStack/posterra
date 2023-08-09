@@ -26,19 +26,19 @@ def seed_posts():
         created_by=6, community_id=4, post_title='[I ate] a taco box', post_body='Soo good!', ext_url='/images/taco.jpg'
     )
     post8 = Post(
-        created_by=11, community_id=4, post_title="[Pro/Chef] 'Raspbaby Yoda' Raspberry Pie", ext_url='images/yodapie.jpg'
+        created_by=11, community_id=4, post_title="[Pro/Chef] 'Raspbaby Yoda' Raspberry Pie", ext_url='/images/yodapie.jpg'
     )
     post9 = Post(
         created_by=11, community_id=5, post_title='Sheep in Human Clothing', ext_url='/images/sheep.png'
     )
     post10 = Post(
-        created_by=10, community_id=5, post_title='UPDATE. EA announces plans for next gen controller.', post_body='As expected.', ext_url='images/ea.jpg'
+        created_by=10, community_id=5, post_title='UPDATE. EA announces plans for next gen controller.', post_body='As expected.', ext_url='/images/ea.jpg'
     )
     post11 = Post(
-        created_by=14, community_id=6, post_title='Minesweeper 99 x 99, 1500 mines. Took me about 2.5 hours to finish, nerve-wracking.', post_body='No one might care, but just wanted to share this.', ext_url='images/mines.png'
+        created_by=14, community_id=6, post_title='Minesweeper 99 x 99, 1500 mines. Took me about 2.5 hours to finish, nerve-wracking.', post_body='No one might care, but just wanted to share this.', ext_url='/images/mines.png'
     )
     post12 = Post(
-        created_by=4, community_id=6, post_title='Jerry', ext_url='images/jerry.jpg'
+        created_by=4, community_id=6, post_title='Jerry', ext_url='/images/jerry.jpg'
     )
     post13 = Post(
         created_by=13, community_id=7, post_title='3,000-year-old underwater castle discovered in Turkeys largest lake', ext_url='https://inhabitat.com/3000-year-old-underwater-castle-discovered-in-turkeys-largest-lake/'
@@ -47,10 +47,10 @@ def seed_posts():
         created_by=2, community_id=7, post_title='700 year old Knights Templar cave discovered in England', ext_url='https://www.bbc.com/news/uk-england-39193347'
     )
     post15 = Post(
-        created_by=4, community_id=8, post_title="Tom Hanks as Mister Rogers on the set of 'You Are My Friend'", post_body='We miss you, Mister Rogers!', ext_url='images/tom.jpg'
+        created_by=4, community_id=8, post_title="Tom Hanks as Mister Rogers on the set of 'You Are My Friend'", post_body='We miss you, Mister Rogers!', ext_url='/images/tom.jpg'
     )
     post16 = Post(
-        created_by=8, community_id=8, post_title="This 'Deadpool 2' poster", post_body='My favorite poster by far. What do you think?', ext_url='images/deadpool.jpg'
+        created_by=8, community_id=8, post_title="This 'Deadpool 2' poster", post_body='My favorite poster by far. What do you think?', ext_url='/images/deadpool.jpg'
     )
     post17 = Post(
         created_by=5, community_id=9, post_title='A song I wrote just for Posterra', post_body='Enjoy!', ext_url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
@@ -77,16 +77,16 @@ def seed_posts():
         created_by=3, community_id=12, post_title='In Seattle, Washington, delaying the start time of two high schools by nearly an hour lengthened students daily sleep by more than half an hour, and was associated with reduced sleepiness and increased academic performance.', ext_url='https://www.eurekalert.org/news-releases/528060'
     )
     post25 = Post(
-        created_by=3, community_id=13, post_title='First full-colour Image of deep space from the James Webb Space Telescope revealed by NASA (in 4k)', post_body='We are so small.', ext_url='images/space.jpg'
+        created_by=3, community_id=13, post_title='First full-colour Image of deep space from the James Webb Space Telescope revealed by NASA (in 4k)', post_body='We are so small.', ext_url='/images/space.jpg'
     )
     post26 = Post(
-        created_by=13, community_id=13, post_title='I took nearly 50,000 images of the night sky to make an 81 Megapixel image of the moon.', ext_url='images/moon.jpg'
+        created_by=13, community_id=13, post_title='I took nearly 50,000 images of the night sky to make an 81 Megapixel image of the moon.', ext_url='/images/moon.jpg'
     )
     post27 = Post(
-        created_by=7, community_id=14, post_title='The Monterrey Stadium. Mexico.', post_body='My favorite place to go!', ext_url='images/stadium.jpg'
+        created_by=7, community_id=14, post_title='The Monterrey Stadium. Mexico.', post_body='My favorite place to go!', ext_url='/images/stadium.jpg'
     )
     post28 = Post(
-        created_by=3, community_id=14, post_title='What 10,000 horsepower does to a drag tire at launch', ext_url='images/tire.jpg'
+        created_by=3, community_id=14, post_title='What 10,000 horsepower does to a drag tire at launch', ext_url='/images/tire.jpg'
     )
     post29 = Post(
         created_by=4, community_id=15, post_title="Stranger Things 5: Will Takes 'Center Stage' in final Season", ext_url='https://tvline.com/previews/stranger-things-season-5-spoilers-will-vecna-connection-1235024449/'

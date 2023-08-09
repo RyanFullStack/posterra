@@ -5,6 +5,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Community from "./components/Community";
+import './index.css'
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="test">
       <Navigation isLoaded={isLoaded} />
       <Switch>
         <Route exact path="/" >

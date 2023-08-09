@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkGetSingleCommunity } from "../../store/community";
 import { thunkGetCommunityPosts } from "../../store/post";
+import PostContainer from "../Post";
+import './community.css'
 
 function Community() {
     const { communityId } = useParams()
@@ -19,7 +21,7 @@ function Community() {
         }
         data()
 
-        return function() {
+        return function () {
             setLoaded(false)
         }
     }, [dispatch, communityId])
@@ -28,16 +30,13 @@ function Community() {
     if (!loaded) return <h2>Loading...</h2>
 
     return (
-        <div>
+        <div className="community-container">
             <h2>{community?.name}</h2>
 
-            <div>
+            <div className="post-main-container">
                 {communityPosts.posts.map(post => {
                     return (
-                        <div key={post.id}>
-                            {post.post_title}
-                            {post.post_body}
-                        </div>
+                        <PostContainer post={post} key={post.id}/>
                     )
                 })}
             </div>

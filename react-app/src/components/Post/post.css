@@ -1,0 +1,25 @@
+.post-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-height: 400px;
+    width: 400px;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(46, 46, 46);
+    border-radius: 1rem;
+    padding: 1rem;
+    gap: .5rem;
+}
+
+.post-container img {
+    max-height: 300px;
+    width: auto;
+    max-width: 350px;
+}

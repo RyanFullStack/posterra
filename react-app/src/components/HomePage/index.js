@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkGetAllPosts } from "../../store/post";
+import PostContainer from "../Post";
+import './home.css'
 
 function HomePage() {
     const [loaded, setLoaded] = useState(false)
@@ -22,13 +24,10 @@ function HomePage() {
     if (!loaded) return <h2>Loading...</h2>
 
     return (
-        <div>
+        <div className="post-main-container">
             {allPosts.posts.map(post => {
                 return (
-                    <div key={post.id}>
-                        {post.post_title}<br />
-                        {post.post_body}
-                    </div>
+                    <PostContainer post={post} key={post.id} />
                 )
             })}
         </div>
