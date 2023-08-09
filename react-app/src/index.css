@@ -1,22 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(20, 20, 20);
-  color: white;
+  background-color: rgb(230, 235, 240);
+  color: rgb(0, 0, 0);
 }
 
 a:link {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 a:visited {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 a:hover {
-  color: rgb(158, 158, 158);
+  color: rgb(122, 122, 122);
 }
 
 a:active {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }

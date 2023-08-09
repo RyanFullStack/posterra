@@ -12,15 +12,15 @@
     width: 600px;
     align-items: center;
     text-align: center;
-    background-color: rgb(32, 32, 32);
-    border-radius: .4rem;
-    border: 1px solid rgb(90, 90, 90);
+    background-color: rgb(255, 255, 255);
+    border-radius: .3rem;
+    outline: .5px solid rgb(139, 139, 139);
     padding: 1rem;
     gap: .5rem;
 }
 
 .post-container:hover {
-    border: 1px solid rgb(172, 172, 172);
+    outline: 1px solid rgb(0, 0, 0);
 }
 
 .post-container img {
