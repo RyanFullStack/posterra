@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
+import OpenModalButton from "../OpenModalButton";
+import ConfirmDeleteModal from "../ConfirmDeleteModal"
 import './post.css'
 
 function PostContainer({ post }) {
@@ -23,13 +25,15 @@ function PostContainer({ post }) {
     }
 
     const handleDelete = async () => {
-        if (window.confirm('Are You Sure? Cannot be undone')) {
             await dispatch(thunkDeletePost(post.id, community.id))
-        }
     }
 
     const handleEdit = async () => {
         setEditMode(true)
+    }
+
+    const handleCancel = async () => {
+        setEditMode(false)
     }
 
     const validateData = () => {
@@ -106,7 +110,8 @@ function PostContainer({ post }) {
                 ? <img src={link} alt={title}></img> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
             {sessionUser?.id === owner.id && !editMode ? <button onClick={handleEdit}>Edit Post</button> : null}
             {sessionUser?.id === owner.id && editMode ? <button onClick={handleSubmit}>Submit Changes</button> : null}
-            {sessionUser?.id === owner.id ? <button onClick={handleDelete}>Delete Post</button> : null}
+            {sessionUser?.id === owner.id && editMode ? <button onClick={handleCancel}>Cancel</button> : null}
+            {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
         </div>
     )
 }
