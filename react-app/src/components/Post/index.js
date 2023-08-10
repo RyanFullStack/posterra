@@ -32,6 +32,10 @@ function PostContainer({ post }) {
         setEditMode(true)
     }
 
+    const handleCancel = async () => {
+        setEditMode(false)
+    }
+
     const validateData = () => {
         const errorObj = {};
 
@@ -106,6 +110,7 @@ function PostContainer({ post }) {
                 ? <img src={link} alt={title}></img> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
             {sessionUser?.id === owner.id && !editMode ? <button onClick={handleEdit}>Edit Post</button> : null}
             {sessionUser?.id === owner.id && editMode ? <button onClick={handleSubmit}>Submit Changes</button> : null}
+            {sessionUser?.id === owner.id && editMode ? <button onClick={handleCancel}>Cancel</button> : null}
             {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
         </div>
     )
