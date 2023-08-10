@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Community, Post, db
 from app.forms import CommunityForm
+from datetime import datetime
 
 community_routes = Blueprint('communities', __name__)
 
@@ -54,6 +55,39 @@ def create_community():
         return new_community.to_dict(), 201
 
     return {'errors': form.errors}, 401
+
+
+@community_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_community(id):
+    """
+    Edit an exisitng community
+    """
+    community = Community.query.get(id)
+
+    form = CommunityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        name = form.data['name']
+        description = form.data['description']
+        logo_pic = form.data['logo_pic']
+        banner_pic = form.data['banner_pic']
+
+        community.name = name
+        community.description = description
+        community.logo_pic = logo_pic
+        community.banner_pic = banner_pic
+        community.updated_at = datetime.now()
+
+        db.session.commit()
+
+        return community.to_dict()
+
+    return {'errors': form.errors}, 401
+
+
+
+
 
 @community_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required

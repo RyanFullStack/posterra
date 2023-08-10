@@ -27,4 +27,5 @@
     outline: .5px solid rgb(180, 180, 180);
     padding: 1rem;
     gap: 5rem;
+    z-index: -1;
 }

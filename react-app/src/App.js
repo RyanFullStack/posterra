@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Community from "./components/Community";
 import CommunityForm from "./components/CommunityForm";
+import EditCommunity from "./components/EditCommunity";
 import PostForm from "./components/PostForm";
 import './index.css'
 
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path='/posts/new'>
           <PostForm />
+        </Route>
+        <Route path='/communities/:communityId/edit'>
+          <EditCommunity />
         </Route>
         <Route path='/communities/:communityId'>
           <Community />

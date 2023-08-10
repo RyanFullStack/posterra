@@ -20,12 +20,17 @@ function CommunityInfo() {
         }
     }
 
+    const handleEdit = async () => {
+        history.push(`/communities/${community.id}/edit`)
+    }
+
     return (
         <div className="community-info-container">
             <div className='community-info-contents'>
                 <p>{community?.name}</p>
                 <p>{community?.description}</p>
                 <p>Created by: u/{owner?.username}</p>
+                {sessionUser?.id === owner.id ? <button onClick={handleEdit}>EDIT COMMUNITY</button> : null}
                 {sessionUser?.id === owner.id ? <button onClick={handleDelete}>DELETE COMMUNITY</button> : null}
             </div>
         </div>
