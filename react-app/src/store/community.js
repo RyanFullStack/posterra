@@ -56,6 +56,29 @@ export const thunkCreateCommunity = (data) => async (dispatch) => {
     }
 }
 
+export const thunkEditCommunity = (id, data) => async (dispatch) => {
+    const res = await fetch(`/api/communities/${id}/edit`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: data.name,
+            description: data.description,
+            logo_pic: data.logo_pic,
+            banner_pic: data.banner_pic,
+            created_by: data.created_by
+        })
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetSingleCommunity(id))
+        return data
+    } else {
+        return res
+    }
+}
+
 export const thunkDeleteCommunity = (id) => async (dispatch) => {
     const res = await fetch(`/api/communities/${id}/delete`, {
         method: 'DELETE'

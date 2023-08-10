@@ -25,12 +25,19 @@ function PostContainer({ post }) {
         }
     }
 
+    const handleEdit = async () => {
+        if (window.confirm('Coming soon')) {
+            return
+        }
+    }
+
     return (
         <div key={post.id} className="post-container">
             <div>{title} by u/{owner.username} in p/{community.name} {edited ? '*edited': null} at {created}</div>
             <div>{body}</div>
             {link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png')
             ? <img src={link} alt={title}></img> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
+            {sessionUser?.id === owner.id ? <button onClick={handleEdit}>Edit Post</button> : null}
             {sessionUser?.id === owner.id ? <button onClick={handleDelete}>Delete Post</button> : null}
         </div>
     )
