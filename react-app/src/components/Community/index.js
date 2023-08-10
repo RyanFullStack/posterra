@@ -10,24 +10,34 @@ import './community.css'
 function Community() {
     const { communityId } = useParams()
     const [loaded, setLoaded] = useState(false)
+    const [found, setFound] = useState(false)
     const dispatch = useDispatch()
     const communityPosts = useSelector(state => state.posts.posts)
 
     useEffect(() => {
         const data = async () => {
-            await dispatch(thunkGetSingleCommunity(communityId))
+            const res = await dispatch(thunkGetSingleCommunity(communityId))
             await dispatch(thunkGetCommunityPosts(communityId))
-            setLoaded(true)
+            const isFound = await res
+            if (isFound.message) {
+                setFound(false)
+            } else {
+                setLoaded(true)
+                setFound(true)
+            }
         }
         data()
 
         return function () {
             setLoaded(false)
+            setFound(false)
         }
     }, [dispatch, communityId])
 
+    if (!found) return <h2>Community not found!</h2>
 
     if (!loaded) return <h2>Loading...</h2>
+
 
     return (
         <div className="community-container">
