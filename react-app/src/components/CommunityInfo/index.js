@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import './communityinfo.css'
 import { thunkDeleteCommunity } from '../../store/community';
+import OpenModalButton from "../OpenModalButton";
+import ConfirmDeleteModal from "../ConfirmDeleteModal"
+import './communityinfo.css'
 
 
 function CommunityInfo() {
@@ -14,10 +16,8 @@ function CommunityInfo() {
     if (!owner || !community) return <h2>Loading...</h2>
 
     const handleDelete = async () => {
-        if (window.confirm('Are You Sure? Cannot be undone')) {
             await dispatch(thunkDeleteCommunity(community.id))
             history.push('/')
-        }
     }
 
     const handleEdit = async () => {
@@ -31,7 +31,7 @@ function CommunityInfo() {
                 <p>{community?.description}</p>
                 <p>Created by: u/{owner?.username}</p>
                 {sessionUser?.id === owner.id ? <button onClick={handleEdit}>EDIT COMMUNITY</button> : null}
-                {sessionUser?.id === owner.id ? <button onClick={handleDelete}>DELETE COMMUNITY</button> : null}
+                {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'DELETE COMMUNITY'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
             </div>
         </div>
     )
