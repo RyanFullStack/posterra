@@ -1,7 +1,6 @@
 .community-info-container {
     display: flex;
     flex-direction: column;
-    z-index: -1;
     position: sticky;
     top: 4rem;
     box-sizing: border-box;
