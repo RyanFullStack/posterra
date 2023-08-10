@@ -18,11 +18,11 @@ function Community() {
         const data = async () => {
             const res = await dispatch(thunkGetSingleCommunity(communityId))
             await dispatch(thunkGetCommunityPosts(communityId))
+            setLoaded(true)
             const isFound = await res
             if (isFound.message) {
                 setFound(false)
             } else {
-                setLoaded(true)
                 setFound(true)
             }
         }
@@ -34,9 +34,9 @@ function Community() {
         }
     }, [dispatch, communityId])
 
-    if (!found) return <h2>Community not found!</h2>
 
     if (!loaded) return <h2>Loading...</h2>
+    if (!found) return <h2>Community not found!</h2>
 
 
     return (
