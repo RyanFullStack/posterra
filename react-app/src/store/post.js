@@ -63,6 +63,31 @@ export const thunkCreatePost = (data) => async (dispatch) => {
     }
 }
 
+
+export const thunkEditPost = (communityId, postId, data) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/edit`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            post_title: data.post_title,
+            post_body: data.post_body,
+            created_by: data.created_by,
+            community_id: communityId,
+            ext_url: data.ext_url
+        })
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(thunkGetCommunityPosts(communityId))
+        return data
+    } else {
+        return res
+    }
+}
+
+
 export const thunkDeletePost = (post_id, community_id) => async (dispatch) => {
     const res = await fetch(`/api/posts/${post_id}/delete`, {
         method: 'DELETE'

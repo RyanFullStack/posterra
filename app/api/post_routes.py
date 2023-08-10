@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Community, Post, db
 from app.forms import PostForm
+from datetime import datetime
 
 post_routes = Blueprint('posts', __name__)
 
@@ -39,6 +40,38 @@ def create_post():
         db.session.commit()
 
         return new_post.to_dict(), 201
+
+    return {'errors': form.errors}, 401
+
+
+@post_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_post(id):
+    """
+    Edit an exisitng post
+    """
+    post = Post.query.get(id)
+
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        post_title = form.data['post_title']
+        post_body = form.data['post_body']
+        created_by = form.data['created_by']
+        community_id = form.data['community_id']
+        ext_url = form.data['ext_url']
+
+        post.post_title = post_title
+        post.post_body = post_body
+        post.created_by = created_by
+        post.community_id = community_id
+        post.ext_url = ext_url
+        post.updated_at = datetime.now()
+        post.edited = True
+
+        db.session.commit()
+
+        return post.to_dict()
 
     return {'errors': form.errors}, 401
 
