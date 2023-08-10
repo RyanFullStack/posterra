@@ -3,7 +3,12 @@
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
-    margin-left: 6rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .post-main-container {
@@ -25,6 +30,70 @@
     background-color: rgb(255, 255, 255);
     border-radius: .2rem;
     outline: .5px solid rgb(180, 180, 180);
+}
+
+.home-info-contents {
+    padding: 1rem;
+}
+
+.home-info {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-height: 400px;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: .2rem;
+    outline: .5px solid rgb(180, 180, 180);
     padding: 1rem;
     gap: 5rem;
+}
+
+#premium {
+    width: 16rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: rgba(255, 45, 17, 0.89);
+    color: white;
+}
+
+#premium:hover {
+    background-color: rgba(255, 89, 67, 0.856);
+    cursor: pointer;
+}
+
+#createpost {
+    width: 16rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: rgb(38, 131, 236);
+    color: white;
+    margin-bottom: 1rem;
+}
+
+#createpost:hover {
+    background-color: rgb(70, 148, 236);
+    cursor: pointer;
+}
+
+#createcomm {
+    width: 16rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: 2px solid rgb(38, 131, 236);
+    background-color: rgba(255, 255, 255, 0.808);
+    color: rgb(38, 131, 236);
+}
+
+#createcomm:hover {
+    background-color: rgba(238, 239, 255, 0.808);
+    cursor: pointer;
+}
+
+#home-earth {
+    width: 100%;
 }
