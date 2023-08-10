@@ -37,11 +37,9 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className='nav-container'>
-			<div>
 				<NavLink exact to="/" onClick={resetDropdown}>
-					Posterra
+					<img id='logo' src='/logo.png' alt='Posterra Logo'/>
 				</NavLink>
-			</div>
 
 			<div>
 				<select onChange={changeCommunity} value={selectedCommunity}>

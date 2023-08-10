@@ -28,9 +28,10 @@ function CommunityInfo() {
         <div className="community-info-container">
             <div className='community-info-contents'>
                 <p>{community?.name}</p>
+                <img src={community?.logo_pic} alt={community?.name}/>
                 <p>{community?.description}</p>
                 <p>Created by: u/{owner?.username}</p>
-                {sessionUser?.id === owner.id ? <button onClick={handleEdit}>EDIT COMMUNITY</button> : null}
+                {sessionUser?.id === owner.id ? <button id='editcomm' onClick={handleEdit}>EDIT COMMUNITY</button> : null}
                 {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'DELETE COMMUNITY'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
             </div>
         </div>
