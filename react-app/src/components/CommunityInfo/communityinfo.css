@@ -38,6 +38,11 @@
     color: white;
 }
 
+#editpost:hover {
+    background-color: rgb(70, 148, 236);
+    cursor: pointer;
+}
+
 
 #deletecomm {
     width: 16rem;

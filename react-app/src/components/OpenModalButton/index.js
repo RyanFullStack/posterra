@@ -17,7 +17,7 @@ function OpenModalButton({
   };
 
   return (
-    <button onClick={onClick} id={buttonText === 'DELETE COMMUNITY' ? 'deletecomm' : 'deletepost'} >{buttonText}</button>
+    <button onClick={onClick} id={(buttonText === 'Log In' || buttonText === 'Sign Up')  ? 'nav-button' : 'deletepost'} >{buttonText}</button>
   );
 }
 
