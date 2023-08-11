@@ -37,9 +37,9 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className='nav-container'>
-				<NavLink exact to="/" onClick={resetDropdown}>
-					<img id='logo' src='/logo.png' alt='Posterra Logo'/>
-				</NavLink>
+			<NavLink exact to="/" onClick={resetDropdown}>
+				<img id='logo' src='/logo.png' alt='Posterra Logo' />
+			</NavLink>
 
 			<div>
 				<select onChange={changeCommunity} value={selectedCommunity}>
@@ -54,11 +54,12 @@ function Navigation({ isLoaded }) {
 				</select>
 			</div>
 
-			<div>
+			<div classname='log-in-container'>
 				{isLoaded && sessionUser && <ProfileButton user={sessionUser} />}
 
+
 				{!sessionUser && (
-					<div>
+					<>
 						<OpenModalButton
 							buttonText="Log In"
 							modalComponent={<LoginFormModal />}
@@ -68,8 +69,9 @@ function Navigation({ isLoaded }) {
 							buttonText="Sign Up"
 							modalComponent={<SignupFormModal />}
 						/>
-					</div>
+					</>
 				)}
+
 			</div>
 		</div>
 	);

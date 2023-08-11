@@ -31,8 +31,8 @@ function CommunityInfo() {
                 <img src={community?.logo_pic} alt={community?.name}/>
                 <p>{community?.description}</p>
                 <p>Created by: u/{owner?.username}</p>
-                {sessionUser?.id === owner.id ? <button id='editcomm' onClick={handleEdit}>EDIT COMMUNITY</button> : null}
-                {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'DELETE COMMUNITY'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
+                {sessionUser?.id === owner.id ? <button id='editcomm' onClick={handleEdit}>Edit Community</button> : null}
+                {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Community'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
             </div>
         </div>
     )

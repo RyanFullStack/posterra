@@ -33,3 +33,25 @@
 #logo {
   max-height: 2.5rem;
 }
+
+.log-in-container {
+  display: flex;
+  flex-direction: row;
+  width: 50rem;
+  gap: 50rem;
+}
+
+#nav-button {
+  padding: .5rem;
+  width: 6rem;
+  border-radius: 3rem;
+  border: none;
+  background-color: rgba(255, 45, 17, 0.89);
+  color: white;
+  margin: .5rem;
+}
+
+#nav-button:hover {
+    background-color: rgba(255, 89, 67, 0.856);
+    cursor: pointer;
+}

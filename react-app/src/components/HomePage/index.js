@@ -54,8 +54,8 @@ function HomePage() {
                         <p>Posterra Home</p>
                         <p>Posts from around the world...</p>
                         <p>Your personal homepage. Come here to check in with your favorite communities.</p>
-                        <button id='createpost' onClick={() => history.push('/posts/new')}>Create a post</button><br />
-                        <button id='createcomm' onClick={() => history.push('/communities/new')}>Create a community</button>
+                        <button id='createpost' onClick={() => history.push('/posts/new')}>Create post</button><br />
+                        <button id='createcomm' onClick={() => history.push('/communities/new')}>Create community</button>
                     </div>
                 </div>
             </div>
