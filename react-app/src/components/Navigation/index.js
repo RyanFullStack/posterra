@@ -42,7 +42,7 @@ function Navigation({ isLoaded }) {
 			</NavLink>
 
 			<div>
-				<select onChange={changeCommunity} value={selectedCommunity}>
+				<select id='select' onChange={changeCommunity} value={selectedCommunity}>
 					<option value="none" disabled hidden>
 						Choose a community...
 					</option>
