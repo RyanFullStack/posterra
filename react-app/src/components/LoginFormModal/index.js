@@ -17,22 +17,23 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
   return (
     <div className="modal">
-      <h1>Log In</h1>
+      <h2>Log In</h2>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <div className="errors">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <p key={idx}>{error}</p>
           ))}
-        </ul>
+        </div>
         <label>
           <p>Username</p>
           <p><input
+            className='create-form-select'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -40,15 +41,16 @@ function LoginFormModal() {
           /></p>
         </label>
         <label>
-        <p>Password</p>
+          <p>Password</p>
           <p><input
+            className='create-form-select'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           /></p>
         </label>
-        <button type="submit">Log In</button>
+        <button id="login-button" type="submit">Log In</button>
       </form>
     </div>
   );
