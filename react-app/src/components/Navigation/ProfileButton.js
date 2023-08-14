@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
   const ulRef = useRef();
 
   const openMenu = () => {
@@ -38,8 +40,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button id='user-menu' onClick={openMenu}>
+        <div className="logged-in-user">
+          <div id='user'>
+            <img id='logged-in-pic' src={sessionUser?.profile_pic} alt='User Profile Pic' />
+            <b>{sessionUser?.username}</b>
+          </div>
+          <div id='fasdown'>
+            <i className="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
