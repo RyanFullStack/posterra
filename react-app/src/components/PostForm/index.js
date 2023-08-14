@@ -128,8 +128,6 @@ function PostForm() {
                     <p>1. Remember the human</p>
                     <p>2. Behave like you would in real life</p>
                     <p>3. Look for the original source of content</p>
-                    <p>4. Search for duplicates before posting</p>
-                    <p>5. Read the community's rules</p>
                 </div>
             </div>
         </div>
