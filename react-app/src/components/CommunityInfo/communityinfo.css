@@ -4,6 +4,7 @@
     position: sticky;
     top: 4rem;
     box-sizing: border-box;
+    height: fit-content;
     max-height: 400px;
     width: 300px;
     align-items: center;
@@ -13,6 +14,7 @@
     outline: .5px solid rgb(180, 180, 180);
     padding: 1rem;
 }
+
 
 #editcomm {
         width: 16rem;

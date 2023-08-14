@@ -77,8 +77,12 @@ function PostContainer({ post }) {
 
     return (
         <div key={post.id} className="post-container">
-            {!editMode ? <><div>{title} by u/{owner.username} in p/{community.name} {edited ? '*edited' : null} at {created}</div>
-                <div>{body}</div></> :
+            {!editMode ? <>
+                <div><small>{community.name} • <span id='post-info'>Posted by {owner.username} {edited ? '*edited' : null} at {created}</span></small></div>
+                <div>
+                    <h4>{title}</h4>
+                    <small>{body}</small>
+                </div></> :
                 <>
                     <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
                     <input
@@ -110,7 +114,7 @@ function PostContainer({ post }) {
                 </>
             }
             {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png'))
-                ? <img src={link} alt={title}></img> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
+                ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
             {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
             {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
             {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
