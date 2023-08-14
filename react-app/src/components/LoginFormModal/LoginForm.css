@@ -6,4 +6,22 @@
     align-items: center;
     text-align: center;
     gap: 1rem;
+    font-size: .8rem;
+}
+
+.errors {
+    color: red;
+    font-size: .7rem;
+}
+
+#login-button {
+    background-color: rgb(38, 131, 236);
+    border: none;
+    width: 8rem;
+    height: 2rem;
+}
+
+#login-button:hover {
+    background-color: rgb(70, 148, 236);
+    cursor: pointer;
 }

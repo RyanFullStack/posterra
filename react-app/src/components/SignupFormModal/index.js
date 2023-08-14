@@ -33,16 +33,17 @@ function SignupFormModal() {
 
 	return (
 		<div className="modal">
-			<h1>Sign Up</h1>
+			<h2>Sign Up</h2>
 			<form onSubmit={handleSubmit}>
-				<ul>
+				<div className="errors">
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<p key={idx}>{error}</p>
 					))}
-				</ul>
+				</div>
 				<label>
-				<p>First Name</p>
-				<p><input
+					<p>First Name</p>
+					<p><input
+						className='create-form-select'
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
@@ -50,8 +51,9 @@ function SignupFormModal() {
 					/></p>
 				</label>
 				<label>
-				<p>Last Name</p>
-				<p><input
+					<p>Last Name</p>
+					<p><input
+						className='create-form-select'
 						type="text"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
@@ -59,8 +61,9 @@ function SignupFormModal() {
 					/></p>
 				</label>
 				<label>
-				<p>Email</p>
-				<p><input
+					<p>Email</p>
+					<p><input
+						className='create-form-select'
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -68,8 +71,9 @@ function SignupFormModal() {
 					/></p>
 				</label>
 				<label>
-				<p>Username</p>
-				<p><input
+					<p>Username</p>
+					<p><input
+						className='create-form-select'
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -77,8 +81,9 @@ function SignupFormModal() {
 					/></p>
 				</label>
 				<label>
-				<p>Password</p>
-				<p><input
+					<p>Password</p>
+					<p><input
+						className='create-form-select'
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -86,15 +91,16 @@ function SignupFormModal() {
 					/></p>
 				</label>
 				<label>
-				<p>Confirm Password</p>
-				<p><input
+					<p>Confirm Password</p>
+					<p><input
+						className='create-form-select'
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/></p>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button id="login-button" type="submit">Sign Up</button>
 			</form>
 		</div>
 	);

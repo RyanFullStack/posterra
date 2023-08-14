@@ -2,14 +2,27 @@
   position: absolute;
   right: 1rem;
   top: 3rem;
-  width: 10rem;
+  width: 11.2rem;
   background-color: white;
-  padding: 0.5rem;
   border-radius: 0.2rem;
   outline: 0.5px solid rgb(180, 180, 180);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#log-out-button {
+  width: 9rem;
+  height: 2rem;
+  background-color: rgb(38, 131, 236);
+  color: white;
+  border: none;
+  border-radius: .5rem;
+}
+
+#log-out-button:hover {
+  background-color: rgb(4, 111, 233);
+  cursor: pointer;
 }
 
 .hidden {
@@ -54,6 +67,8 @@
   height: 2rem;
   border-radius: 1rem;
   border: none;
+  background-color: rgb(245, 245, 245);
+  padding: 0 1rem;
 }
 
 #select:hover {
@@ -92,7 +107,7 @@
 }
 
 #user-menu:hover {
-  outline: 1px solid black;
+  outline: 1px solid rgb(119, 119, 119);
   cursor: pointer;
 }
 

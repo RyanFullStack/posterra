@@ -10,13 +10,26 @@
     box-sizing: border-box;
     max-height: 550px;
     width: 650px;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     background-color: rgb(255, 255, 255);
     border-radius: .2rem;
     outline: .5px solid rgb(180, 180, 180);
     padding: 1rem;
-    gap: .5rem;
+}
+
+.post-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+#post-info {
+    color: rgb(165, 165, 165);
+    font-size: .7rem;
 }
 
 .post-container:hover {

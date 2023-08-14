@@ -27,10 +27,10 @@ function CommunityInfo() {
     return (
         <div className="community-info-container">
             <div className='community-info-contents'>
-                <p>{community?.name}</p>
+                <b>{community?.name}</b><br />
                 <img src={community?.logo_pic} alt={community?.name}/>
                 <p>{community?.description}</p>
-                <p>Created by: u/{owner?.username}</p>
+                <small>Created by: u/{owner?.username}</small>
                 {sessionUser?.id === owner.id ? <button id='editcomm' onClick={handleEdit}>Edit Community</button> : null}
                 {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Community'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete}/>} /> : null}
             </div>

@@ -33,7 +33,7 @@ function HomePage() {
     return (
         <div className="main-display-container">
             <div className="post-main-container">
-                {sessionUser ? <div className="post-container">
+                {sessionUser ? <div className="post-container-fake">
                     <div className='post-input-container'>
                         <img id='post-profile-pic' src={sessionUser?.profile_pic} alt='User Profile Pic' />
                         <input id='create-post-input' onClick={handlePost} placeholder="Create Post"></input>
@@ -50,16 +50,16 @@ function HomePage() {
             <div className="sidebar">
                 <div className="home-info">
                     <div className="home-info-contents">
-                        <p>Posterra Premium</p>
-                        <p>The best posterra experience</p>
+                        <small>Posterra Premium</small>
+                        <p>The best posterra experience!</p>
                         <button id='premium' onClick={() => window.alert('Coming Soon!')}>Try Now</button>
                     </div>
                 </div>
                 <div className="home-info-container">
                     <img id='home-earth' src='/earth.png' alt='earth' />
                     <div className="home-info-contents">
-                        <p>Posterra Home</p>
-                        <p>Posts from around the world...</p>
+                        <b>Home</b><br />
+                        <small>Posts from around the world...</small>
                         <p>Your personal homepage. Come here to check in with your favorite communities.</p>
                         {sessionUser ? <button id='createpost' onClick={() => history.push('/posts/new')}>Create post</button> : null}
                         {sessionUser ? <button id='createcomm' onClick={() => history.push('/communities/new')}>Create community</button> : null}
