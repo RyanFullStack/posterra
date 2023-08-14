@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkCreateCommunity } from '../../store/community';
-import './CommunityForm.css'
+
 
 function CommunityForm() {
     const dispatch = useDispatch()

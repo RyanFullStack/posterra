@@ -58,9 +58,9 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <p>Hey, {user.username.toLowerCase().split('')[0].toUpperCase() + user.username.toLowerCase().slice(1)}</p>
-            <p>{user.email}</p>
+            <small>{user.email}</small>
             <p>
-              <button onClick={handleLogout}>Log Out</button>
+              <button id='log-out-button' onClick={handleLogout}>Log Out</button>
             </p>
           </>
         ) : null}
