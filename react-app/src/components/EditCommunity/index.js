@@ -18,7 +18,7 @@ function EditCommunity() {
     const { communityId } = useParams()
 
     useEffect(() => {
-        const data = async() => {
+        const data = async () => {
             const res = await dispatch(thunkGetSingleCommunity(communityId))
             const comm = await res
             setName(comm?.name)
@@ -33,7 +33,7 @@ function EditCommunity() {
     const validateData = () => {
         const errorObj = {};
 
-        if (!name) errorObj.name = "Field is required."
+        if (!name) errorObj.name = "Name is required."
         if (name && (name.length > 50 || name.length < 2)) errorObj.name = 'Must be between 2 and 50 characters.'
 
         if (description && description.length > 255) errorObj.description = 'Must be less than 255 characters.'
@@ -56,7 +56,7 @@ function EditCommunity() {
             banner_pic,
             created_by: currentUser.id
         }
-        console.log(data)
+
         const response = await dispatch(thunkEditCommunity(communityId, data))
         dispatch(thunkGetAllCommunities())
         history.push(`/communities/${response.id}`)
@@ -71,44 +71,62 @@ function EditCommunity() {
     if (currentUser?.id !== community?.created_by) return <h2>Not your Community!</h2>
 
     return (
-        <div>
-            <form className='form-container' method='post' onSubmit={handleSubmit}>
-                <h1>Edit your Community</h1>
-                {errors.serverErrors && <p className='errors'>{errors.serverErrors}</p>}
-                <label htmlFor='name'>Name{errors.name && <span className='errors'>: {errors.name}</span>}</label>
-                <input
-                    name='name'
-                    value={name}
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder='community name'
-                />
-                <label htmlFor='description'>Description{errors.description && <span className='errors'>: {errors.description}</span>}</label>
-                <input
-                    name='description'
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder='description'
-                />
-                <label htmlFor='logo_pic'>Logo</label>
-                <input
-                    name='logo_pic'
-                    type="text"
-                    value={logo_pic}
-                    onChange={(e) => setLogoPic(e.target.value)}
-                    placeholder='logo'
-                />
-                <label htmlFor='banner_pic'>Banner Picture</label>
-                <input
-                    name='banner_pic'
-                    type="text"
-                    value={banner_pic}
-                    onChange={(e) => setBannerPic(e.target.value)}
-                    placeholder='banner pic'
-                />
-                <button className="form-button" type='submit'>Confirm Edits</button>
-            </form>
+        <div className='create-form-container'>
+            <div className='create-post-form'>
+                <form className='form-container' method='post' onSubmit={handleSubmit}>
+                    <h1>Edit your Community</h1>
+                    {errors.serverErrors && <p className='errors'>{errors.serverErrors}</p>}
+                    <div className='create-post-component'><small>* Indicates Required Field</small>
+                        <label htmlFor='name'>Name{errors.name && <span className='errors'>: {errors.name}</span>}</label>
+                        <input
+                            className='create-form-select'
+                            name='name'
+                            value={name}
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder='community name'
+                        />
+                        <label htmlFor='description'>Description{errors.description && <span className='errors'>: {errors.description}</span>}</label>
+                        <input
+                            className='create-form-select'
+                            name='description'
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder='description'
+                        />
+                        <label htmlFor='logo_pic'>Logo</label>
+                        <input
+                            className='create-form-select'
+                            name='logo_pic'
+                            type="text"
+                            value={logo_pic}
+                            onChange={(e) => setLogoPic(e.target.value)}
+                            placeholder='logo'
+                        />
+                        <label htmlFor='banner_pic'>Banner Picture</label>
+                        <input
+                            className='create-form-select'
+                            name='banner_pic'
+                            type="text"
+                            value={banner_pic}
+                            onChange={(e) => setBannerPic(e.target.value)}
+                            placeholder='banner pic'
+                        />
+                        <div id='post-button-align'>
+                            <button id="post-form-button" type='submit'>Confirm Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div className='posting-rules'>
+                <h5>Community Rules:</h5>
+                <div id='rules'>
+                    <p>1. No hate speech/harassment</p>
+                    <p>2. Be kind</p>
+                    <p>3. Foster a sense of belonging and welcome all new members</p>
+                </div>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useModal } from "../../context/Modal";
+import './ConfirmDelete.css'
 
 const ConfirmDeleteModal = ({ title, confirmFunc }) => {
   const { closeModal } = useModal();
@@ -12,13 +13,13 @@ const ConfirmDeleteModal = ({ title, confirmFunc }) => {
   };
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <div>
-        <button onClick={handleClick}>
+    <div className='confirm-delete'>
+      <h2>{title}</h2>
+      <div className="confirm-buttons">
+        <button id='confirm-button-delete' onClick={handleClick}>
           Yes, Delete!
         </button>
-        <button onClick={closeModal}>
+        <button id='confirm-button-keep' onClick={closeModal}>
           No, Back to safety!
         </button>
       </div>
