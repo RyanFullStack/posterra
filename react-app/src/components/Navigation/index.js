@@ -35,6 +35,10 @@ function Navigation({ isLoaded }) {
 		setSelectedCommunity('none');
 	};
 
+	const handlePost = () => {
+		history.push('/posts/new')
+	}
+
 	return (
 		<div className='nav-container'>
 			<NavLink exact to="/" onClick={resetDropdown}>
@@ -42,7 +46,7 @@ function Navigation({ isLoaded }) {
 			</NavLink>
 
 			<div>
-				<select onChange={changeCommunity} value={selectedCommunity}>
+				<select id='select' onChange={changeCommunity} value={selectedCommunity}>
 					<option value="none" disabled hidden>
 						Choose a community...
 					</option>
@@ -54,8 +58,11 @@ function Navigation({ isLoaded }) {
 				</select>
 			</div>
 
-			<div classname='log-in-container'>
-				{isLoaded && sessionUser && <ProfileButton user={sessionUser} />}
+			<div>
+
+				{isLoaded && sessionUser &&
+				<div className='log-in-container'><i onClick={handlePost} id='plus-post' title='Create Post' className="fa-solid fa-plus"></i>
+				<ProfileButton user={sessionUser} /></div>}
 
 
 				{!sessionUser && (

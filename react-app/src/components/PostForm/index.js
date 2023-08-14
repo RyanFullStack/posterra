@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkCreatePost } from '../../store/post';
 import { thunkGetAllCommunities } from '../../store/community';
+import './Postform.css'
 
 function PostForm() {
     const [loaded, setLoaded] = useState(false);
@@ -17,12 +18,12 @@ function PostForm() {
     const allCommunities = useSelector((state) => state.communities.communities);
 
     useEffect(() => {
-		const data = async () => {
-			await dispatch(thunkGetAllCommunities());
+        const data = async () => {
+            await dispatch(thunkGetAllCommunities());
             setLoaded(true);
-		};
-		data();
-	}, [dispatch]);
+        };
+        data();
+    }, [dispatch]);
 
     if (!loaded) return <h2>Loading...</h2>;
 
@@ -67,49 +68,70 @@ function PostForm() {
     }
 
     const handleChange = (e) => {
-		setCommunityId(e.target.value)
-	}
+        setCommunityId(e.target.value)
+    }
 
     if (!currentUser) return <h2>Must be logged in to create anything!</h2>
 
     return (
-        <div>
-            <form className='form-container' method='post' onSubmit={handleSubmit}>
-                <h1>Create a new Post</h1>
-                {errors.serverErrors && <p className='errors'>{errors.serverErrors}</p>}
-                <select onChange={handleChange} value={communityId}>
-					{allCommunities.communities.map((community) => (
-						<option value={community.id} key={community.id}>
-							{community.name}
-						</option>
-					))}
-				</select>
-                <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
-                <input
-                    name='title'
-                    value={title}
-                    type="text"
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder='title'
-                />
-                <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
-                <input
-                    name='body'
-                    type="text"
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                    placeholder='body'
-                />
-                <label htmlFor='ext_url'>Image URL/External Link</label>
-                <input
-                    name='ext_url'
-                    type="text"
-                    value={ext_url}
-                    onChange={(e) => setExtUrl(e.target.value)}
-                    placeholder='Image URL/External Link'
-                />
-                <button className="form-button" type='submit'>Create New Post</button>
-            </form>
+        <div className='create-form-container'>
+            <div className='create-post-form'>
+                <form className='form-container' method='post' onSubmit={handleSubmit}>
+                    <h3>Create a post</h3>
+                    {errors.serverErrors && <p className='errors'>{errors.serverErrors}</p>}
+                    <div className='create-post-component'><small>* Indicates Required Field</small>
+                        Choose a community*:
+                        <select className='create-form-select' onChange={handleChange} value={communityId}>
+                            {allCommunities.communities.map((community) => (
+                                <option value={community.id} key={community.id}>
+                                    {community.name}
+                                </option>
+                            ))}
+                        </select>
+                        <label htmlFor='title'>Post Title*{errors.title && <span className='errors'>: {errors.title}</span>}</label>
+                        <input
+                            className='create-form-select'
+                            name='title'
+                            value={title}
+                            type="text"
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder='title'
+                        />
+                        <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
+                        <textarea
+                            className='create-form-select'
+                            wrap='hard'
+                            name='body'
+                            type="textarea"
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            placeholder='body'
+                        />
+                        <label htmlFor='ext_url'>Image URL/External Link</label>
+                        <input
+                            className='create-form-select'
+                            name='ext_url'
+                            type="text"
+                            value={ext_url}
+                            onChange={(e) => setExtUrl(e.target.value)}
+                            placeholder='Image URL/External Link'
+                        />
+                        <div id='post-button-align'>
+                            <button id="post-form-button" type='submit'>Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div className='posting-rules'>
+                <h5>Posting Rules:</h5>
+                <div id='rules'>
+                    <p>1. Remember the human</p>
+                    <p>2. Behave like you would in real life</p>
+                    <p>3. Look for the original source of content</p>
+                    <p>4. Search for duplicates before posting</p>
+                    <p>5. Read the community's rules</p>
+                </div>
+            </div>
         </div>
     )
 }

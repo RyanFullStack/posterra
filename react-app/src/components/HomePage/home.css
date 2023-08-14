@@ -97,3 +97,26 @@
 #home-earth {
     width: 100%;
 }
+
+.post-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+#post-profile-pic {
+    height: 2rem;
+    padding: 0 .5rem;
+}
+
+#create-post-input {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0 2rem;
+    border: none;
+}
+
+#create-post-input:hover {
+    outline: 1px solid rgb(38, 131, 236);;
+}
