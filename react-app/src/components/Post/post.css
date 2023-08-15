@@ -52,10 +52,14 @@
 }
 
 #post-input {
-    width: 11rem;
+    width: 80%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #break-word {
     word-break: break-word;
+}
+
+#edit {
+    width: 80%;
 }
