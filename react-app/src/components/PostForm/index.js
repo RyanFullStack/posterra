@@ -39,7 +39,7 @@ function PostForm() {
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'
 
-        if (!isUrl(ext_url)) errorObj.url = 'URL not valid!'
+        if (ext_url && !isUrl(ext_url)) errorObj.url = 'URL not valid!'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
@@ -99,7 +99,7 @@ function PostForm() {
                             value={title}
                             type="text"
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder='title'
+                            placeholder='title your post'
                         />
                         <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
                         <textarea
@@ -109,7 +109,7 @@ function PostForm() {
                             type="textarea"
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
-                            placeholder='body'
+                            placeholder='post body...'
                         />
                         <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
                         <input
@@ -118,7 +118,7 @@ function PostForm() {
                             type="text"
                             value={ext_url}
                             onChange={(e) => setExtUrl(e.target.value)}
-                            placeholder='Image URL/External Link'
+                            placeholder='http://www.yourlink.com.jpg.jpeg.png.gif'
                         />
                         <div id='post-button-align'>
                             <button id="post-form-button" type='submit'>Post</button>

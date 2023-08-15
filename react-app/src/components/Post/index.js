@@ -44,6 +44,7 @@ function PostContainer({ post }) {
     }
 
     const handleEdit = async () => {
+        setErrors({})
         setEditMode(true)
     }
 
@@ -64,7 +65,7 @@ function PostContainer({ post }) {
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'
 
-        if (!isUrl(link)) errorObj.url = 'URL not valid!'
+        if (link && !isUrl(link)) { errorObj.url = 'URL not valid!' } else { delete errorObj.url }
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
@@ -115,11 +116,12 @@ function PostContainer({ post }) {
                     <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
                     <input
                         className='create-form-select'
+                        id='edit'
                         name='title'
                         value={title}
                         type="text"
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder='title'
+                        placeholder='title your post'
                     />
                     <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
                     <textarea
@@ -129,20 +131,21 @@ function PostContainer({ post }) {
                         type="text"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
-                        placeholder='body'
+                        placeholder='post body...'
                     />
                     <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
                     <input
                         className='create-form-select'
+                        id='edit'
                         name='ext_url'
                         type="text"
                         value={link}
                         onChange={(e) => setLink(e.target.value)}
-                        placeholder='Image URL/External Link'
+                        placeholder='http://www.yourlink.com.jpg.jpeg.png.gif'
                     />
                 </div>}
             <div className='edit-buttons'>
-                {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png'))
+                {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png') || link?.toLowerCase().endsWith('.gif'))
                     ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
                 {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
                 {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
