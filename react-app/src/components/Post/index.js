@@ -17,6 +17,16 @@ function PostContainer({ post }) {
     const [title, setTitle] = useState(post?.post_title)
     const [body, setBody] = useState(post?.post_body)
     const [link, setLink] = useState(post?.ext_url)
+    const time = new Date(created)
+    const dispTime = time.toLocaleTimeString("en-US", {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+    })
 
     let shortLink = ''
 
@@ -91,10 +101,10 @@ function PostContainer({ post }) {
     return (
         <div key={post.id} className="post-container">
             {!editMode ? <>
-                <div><small>{community.name} • <span id='post-info'>Posted by {owner.username} {edited ? '*edited' : null} at {created}</span></small></div>
-                <div>
+                <div><small><a href={`/communities/${community.id}`}>{community.name}</a> • <span id='post-info'>Posted by u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
+                <div id='break-word'>
                     <h4>{title}</h4>
-                    <small>{body}</small>
+                    <div><small>{body}</small></div>
                 </div></> :
 
                 <div className='edit-buttons'>
