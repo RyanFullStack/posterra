@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { thunkCreatePost } from '../../store/post';
 import { thunkGetAllCommunities } from '../../store/community';
 import './Postform.css'
+import isUrl from 'is-url';
 
 function PostForm() {
     const [loaded, setLoaded] = useState(false);
@@ -28,15 +29,17 @@ function PostForm() {
     if (!loaded) return <h2>Loading...</h2>;
 
 
-
     const validateData = () => {
         const errorObj = {};
+
 
         if (!title) errorObj.title = "Title is required."
         if (title && title.trim().length === 0) errorObj.title = 'Title cannot be only whitespace'
         if (title && (title.length > 255 || title.length < 10)) errorObj.title = 'Must be between 10 and 255 characters.'
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'
+
+        if (!isUrl(ext_url)) errorObj.url = 'URL not valid!'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
@@ -108,7 +111,7 @@ function PostForm() {
                             onChange={(e) => setBody(e.target.value)}
                             placeholder='body'
                         />
-                        <label htmlFor='ext_url'>Image URL/External Link</label>
+                        <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
                         <input
                             className='create-form-select'
                             name='ext_url'

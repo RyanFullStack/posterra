@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
-import OpenModalButton from "../OpenModalButton";
+import OpenModalButton from "../OpenModalButton"
 import ConfirmDeleteModal from "../ConfirmDeleteModal"
+import isUrl from 'is-url'
 import './post.css'
 
 function PostContainer({ post }) {
@@ -53,6 +54,7 @@ function PostContainer({ post }) {
         setEditMode(false)
     }
 
+
     const validateData = () => {
         const errorObj = {};
 
@@ -61,6 +63,8 @@ function PostContainer({ post }) {
         if (title && (title.length > 255 || title.length < 10)) errorObj.title = 'Must be between 10 and 255 characters.'
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'
+
+        if (!isUrl(link)) errorObj.url = 'URL not valid!'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
@@ -127,7 +131,7 @@ function PostContainer({ post }) {
                         onChange={(e) => setBody(e.target.value)}
                         placeholder='body'
                     />
-                    <label htmlFor='ext_url'>Image URL/External Link</label>
+                    <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
                     <input
                         className='create-form-select'
                         name='ext_url'
