@@ -65,6 +65,15 @@ function HomePage() {
                         {sessionUser ? <button id='createcomm' onClick={() => history.push('/communities/new')}>Create community</button> : null}
                     </div>
                 </div>
+                <div className="creator-info">
+                    <div className="home-info">
+                        <div className="home-info-contents">
+                            <p><small>Created by: Ryan Erickson</small></p>
+                            <p><a href='https://github.com/RyanFullStack' target='_blank' rel="noreferrer"><button id='premium'>Check out my GitHub</button></a></p>
+                            <a href='https://www.linkedin.com/in/ryan-erickson-dev/' target='_blank' rel="noreferrer"><button id='createpost'>Connect with me on Linkedin</button></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

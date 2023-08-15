@@ -36,6 +36,13 @@
     padding: 1rem;
 }
 
+.creator-info {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 24rem;
+}
+
 .home-info {
     display: flex;
     flex-direction: column;
