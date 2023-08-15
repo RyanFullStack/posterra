@@ -22,7 +22,7 @@ function LoginFormModal() {
   };
 
   const handleDemo = async() => {
-    await dispatch(login('dave', 'password'))
+    await dispatch(login('pilotguy', 'password'))
     closeModal()
   }
 
