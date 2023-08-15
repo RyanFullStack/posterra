@@ -25,7 +25,7 @@ function PostContainer({ post }) {
     }
 
     const handleDelete = async () => {
-        if (sessionUser.id === 3 && post.id <= 32) {
+        if (sessionUser.id <= 14 && post.id <= 32) {
             window.alert('Demo User cant delete exisiting post. Please create your own.')
         } else {
             await dispatch(thunkDeletePost(post.id, community.id))
@@ -59,7 +59,7 @@ function PostContainer({ post }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (sessionUser.id === 3 && post.id <= 32) {
+        if (sessionUser.id <= 14 && post.id <= 32) {
             window.alert('Demo User cant edit exisiting post. Please create your own.')
         } else {
 
