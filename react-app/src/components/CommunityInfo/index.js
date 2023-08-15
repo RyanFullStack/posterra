@@ -34,7 +34,7 @@ function CommunityInfo() {
             <div className='community-info-contents'>
                 <div id='break-word'>
                     <b>{community?.name}</b><br />
-                    <img src={community?.logo_pic} alt={community?.name} />
+                    <img id='community-info-pic' src={community?.logo_pic} alt={community?.name} />
                     <p>{community?.description}</p>
                     <small>Created by: u/{owner?.username}</small>
                 </div>
