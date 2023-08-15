@@ -38,7 +38,7 @@ def seed_users():
         username='kaykay', first_name='Kayleigh', last_name='Trosper', email='kayleigh@aa.io', password='password', bio='Best bartender in the biz!', profile_pic='/userpics/kayleigh.jpg'
     )
     annalise = User( #12
-        username='airmedic', first_name='Annalise', last_name='Eure', email='annalise@aa.io', password='password', bio='Air Medic', profile_pic='/userpics/annalise.jpg'
+        username='airmedic', first_name='Annalise', last_name='Eure', email='annalise@aa.io', password='password', bio='Air Medic', profile_pic='/userpics/annalise.png'
     )
     nacho = User( #13
         username='nacho', first_name='Mark', last_name='Perez', email='nacho@aa.io', password='password', bio='Pilot for the highrollers', profile_pic='/userpics/nacho.png'
