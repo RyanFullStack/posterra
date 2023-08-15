@@ -33,6 +33,7 @@ function PostForm() {
         const errorObj = {};
 
         if (!title) errorObj.title = "Title is required."
+        if (title && title.trim().length === 0) errorObj.title = 'Title cannot be only whitespace'
         if (title && (title.length > 255 || title.length < 10)) errorObj.title = 'Must be between 10 and 255 characters.'
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'

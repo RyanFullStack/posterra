@@ -39,7 +39,8 @@ function PostContainer({ post }) {
     const validateData = () => {
         const errorObj = {};
 
-        if (!title) errorObj.title = "Field is required."
+        if (!title) errorObj.title = "Title is required."
+        if (title && title.trim().length === 0) errorObj.title = 'Title cannot be only whitespace'
         if (title && (title.length > 255 || title.length < 10)) errorObj.title = 'Must be between 10 and 255 characters.'
 
         if (body && body.length > 1000) errorObj.body = 'Must be less than 1000 characters.'
@@ -83,7 +84,8 @@ function PostContainer({ post }) {
                     <h4>{title}</h4>
                     <small>{body}</small>
                 </div></> :
-                <>
+
+                <div className='edit-buttons'>
                     <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
                     <input
                         className='create-form-select'
@@ -94,7 +96,8 @@ function PostContainer({ post }) {
                         placeholder='title'
                     />
                     <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
-                    <input
+                    <textarea
+                        id='post-input'
                         className='create-form-select'
                         name='body'
                         type="text"
@@ -111,14 +114,15 @@ function PostContainer({ post }) {
                         onChange={(e) => setLink(e.target.value)}
                         placeholder='Image URL/External Link'
                     />
-                </>
-            }
-            {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png'))
-                ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
-            {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
-            {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
-            {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
-            {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} /> : null}
+                </div>}
+            <div className='edit-buttons'>
+                {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png'))
+                    ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
+                {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
+                {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
+                {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
+                {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} /> : null}
+            </div>
         </div>
     )
 }

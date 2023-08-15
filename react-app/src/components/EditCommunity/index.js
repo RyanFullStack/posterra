@@ -34,9 +34,14 @@ function EditCommunity() {
         const errorObj = {};
 
         if (!name) errorObj.name = "Name is required."
+        if (name && name.trim().length === 0) errorObj.name = 'Name cannot be only whitespace'
         if (name && (name.length > 50 || name.length < 2)) errorObj.name = 'Must be between 2 and 50 characters.'
 
         if (description && description.length > 255) errorObj.description = 'Must be less than 255 characters.'
+        if (description && description.trim().length === 0) errorObj.description = 'Description cannot be only whitespace.'
+
+        if (logo_pic && logo_pic.trim().length === 0) errorObj.logo_pic = 'Logo Pic URL cannot be only whitespace.'
+        if (banner_pic && banner_pic.trim().length === 0) errorObj.banner_pic = 'Banner Pic URL cannot be only whitespace.'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
@@ -95,7 +100,7 @@ function EditCommunity() {
                             onChange={(e) => setDescription(e.target.value)}
                             placeholder='description'
                         />
-                        <label htmlFor='logo_pic'>Logo</label>
+                        <label htmlFor='logo_pic'>Logo{errors.logo_pic && <span className='errors'>: {errors.logo_pic}</span>}</label>
                         <input
                             className='create-form-select'
                             name='logo_pic'
@@ -104,7 +109,7 @@ function EditCommunity() {
                             onChange={(e) => setLogoPic(e.target.value)}
                             placeholder='logo'
                         />
-                        <label htmlFor='banner_pic'>Banner Picture</label>
+                        <label htmlFor='banner_pic'>Banner Picture{errors.banner_pic && <span className='errors'>: {errors.banner_pic}</span>}</label>
                         <input
                             className='create-form-select'
                             name='banner_pic'
