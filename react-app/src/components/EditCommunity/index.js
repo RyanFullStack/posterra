@@ -49,7 +49,7 @@ function EditCommunity() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (communityId === '13' && currentUser.id === 3) {
+        if (communityId <= 16 && currentUser.id <= 14) {
             window.alert('Demo User cant edit exisiting community. Please create your own.')
         } else {
 
