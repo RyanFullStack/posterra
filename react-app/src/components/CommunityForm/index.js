@@ -18,9 +18,11 @@ function CommunityForm() {
         const errorObj = {};
 
         if (!name) errorObj.name = "Name is required."
+        if (name && name.trim().length === 0) errorObj.name = 'Name cannot be only whitespace'
         if (name && (name.length > 50 || name.length < 2)) errorObj.name = 'Must be between 2 and 50 characters.'
 
         if (description && description.length > 255) errorObj.description = 'Must be less than 255 characters.'
+        if (description && description.trim().length === 0) errorObj.description = 'Description cannot be only whitespace.'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
