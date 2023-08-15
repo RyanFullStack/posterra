@@ -25,7 +25,11 @@ function PostContainer({ post }) {
     }
 
     const handleDelete = async () => {
-        await dispatch(thunkDeletePost(post.id, community.id))
+        if (sessionUser.id === 3 && post.id <= 32) {
+            window.alert('Demo User cant delete exisiting post. Please create your own.')
+        } else {
+            await dispatch(thunkDeletePost(post.id, community.id))
+        }
     }
 
     const handleEdit = async () => {
@@ -52,26 +56,31 @@ function PostContainer({ post }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newErrors = validateData();
-
-        if (newErrors) return setErrors(newErrors)
-
-        const data = {
-            post_title: title,
-            post_body: body,
-            created_by: sessionUser.id,
-            community_id: community.id,
-            ext_url: link
-        }
-
-        const response = await dispatch(thunkEditPost(community.id, post.id, data))
-
-        if (response.errors) {
-            const serverErrors = {}
-            serverErrors.serverErrors = response.errors
-            setErrors(serverErrors)
+        if (sessionUser.id === 3 && post.id <= 32) {
+            window.alert('Demo User cant edit exisiting post. Please create your own.')
         } else {
-            setEditMode(false)
+
+            const newErrors = validateData();
+
+            if (newErrors) return setErrors(newErrors)
+
+            const data = {
+                post_title: title,
+                post_body: body,
+                created_by: sessionUser.id,
+                community_id: community.id,
+                ext_url: link
+            }
+
+            const response = await dispatch(thunkEditPost(community.id, post.id, data))
+
+            if (response.errors) {
+                const serverErrors = {}
+                serverErrors.serverErrors = response.errors
+                setErrors(serverErrors)
+            } else {
+                setEditMode(false)
+            }
         }
     }
 

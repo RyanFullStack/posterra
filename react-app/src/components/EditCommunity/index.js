@@ -49,22 +49,26 @@ function EditCommunity() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (communityId === '13' && currentUser.id === 3) {
+            window.alert('Demo User cant edit exisiting community. Please create your own.')
+        } else {
 
-        const newErrors = validateData();
+            const newErrors = validateData();
 
-        if (newErrors) return setErrors(newErrors)
+            if (newErrors) return setErrors(newErrors)
 
-        const data = {
-            name,
-            description,
-            logo_pic,
-            banner_pic,
-            created_by: currentUser.id
+            const data = {
+                name,
+                description,
+                logo_pic,
+                banner_pic,
+                created_by: currentUser.id
+            }
+
+            const response = await dispatch(thunkEditCommunity(communityId, data))
+            dispatch(thunkGetAllCommunities())
+            history.push(`/communities/${response.id}`)
         }
-
-        const response = await dispatch(thunkEditCommunity(communityId, data))
-        dispatch(thunkGetAllCommunities())
-        history.push(`/communities/${response.id}`)
     }
 
     if (!currentUser) return <h2>Must be logged in to edit!</h2>
@@ -74,6 +78,7 @@ function EditCommunity() {
     if (!loaded) return <h2>Loading...</h2>
 
     if (currentUser?.id !== community?.created_by) return <h2>Not your Community!</h2>
+
 
     return (
         <div className='create-form-container'>

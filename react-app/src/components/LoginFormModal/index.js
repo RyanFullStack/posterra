@@ -21,6 +21,11 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemo = async() => {
+    await dispatch(login('dave', 'password'))
+    closeModal()
+  }
+
   return (
     <div className="modal">
       <h2>Log In</h2>
@@ -50,7 +55,8 @@ function LoginFormModal() {
             required
           /></p>
         </label>
-        <button id="login-button" type="submit">Log In</button>
+        <button id="login-button" type="submit">Log In</button><p></p>
+        <button id='login-button' onClick={handleDemo}>Demo Login</button>
       </form>
     </div>
   );
