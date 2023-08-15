@@ -37,6 +37,9 @@ function PostContainer({ post }) {
     }
 
     const handleCancel = async () => {
+        setTitle(post?.post_title)
+        setBody(post?.post_body)
+        setLink(post?.ext_url)
         setEditMode(false)
     }
 
