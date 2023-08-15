@@ -55,22 +55,24 @@ function HomePage() {
                         <button id='premium' onClick={() => window.alert('Coming Soon!')}>Try Now</button>
                     </div>
                 </div>
-                <div className="home-info-container">
-                    <img id='home-earth' src='/earth.png' alt='earth' />
-                    <div className="home-info-contents">
-                        <b>Home</b><br />
-                        <small>Posts from around the world...</small>
-                        <p>Your personal homepage. Come here to check in with your favorite communities.</p>
-                        {sessionUser ? <button id='createpost' onClick={() => history.push('/posts/new')}>Create post</button> : null}
-                        {sessionUser ? <button id='createcomm' onClick={() => history.push('/communities/new')}>Create community</button> : null}
-                    </div>
-                </div>
-                <div className="creator-info">
-                    <div className="home-info">
+                <div className="sticky">
+                    <div className="home-info-container">
+                        <img id='home-earth' src='/earth.png' alt='earth' />
                         <div className="home-info-contents">
-                            <p><small>Created by: Ryan Erickson</small></p>
-                            <p><a href='https://github.com/RyanFullStack' target='_blank' rel="noreferrer"><button id='premium'>Check out my GitHub</button></a></p>
-                            <a href='https://www.linkedin.com/in/ryan-erickson-dev/' target='_blank' rel="noreferrer"><button id='createpost'>Connect with me on Linkedin</button></a>
+                            <b>Home</b><br />
+                            <small>Posts from around the world...</small>
+                            <p>Your personal homepage. Come here to check in with your favorite communities.</p>
+                            {sessionUser ? <button id='createpost' onClick={() => history.push('/posts/new')}>Create post</button> : null}
+                            {sessionUser ? <button id='createcomm' onClick={() => history.push('/communities/new')}>Create community</button> : null}
+                        </div>
+                    </div>
+                    <div className="creator-info">
+                        <div className="home-info">
+                            <div className="home-info-contents">
+                                <p><small>Created by: Ryan Erickson</small></p>
+                                <p><a href='https://github.com/RyanFullStack' target='_blank' rel="noreferrer"><button id='premium'>Check out my GitHub</button></a></p>
+                                <a href='https://www.linkedin.com/in/ryan-erickson-dev/' target='_blank' rel="noreferrer"><button id='createpost'>Connect with me on Linkedin</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -20,8 +20,6 @@
 .home-info-container {
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: 4rem;
     box-sizing: border-box;
     max-height: 400px;
     width: 300px;
@@ -36,11 +34,17 @@
     padding: 1rem;
 }
 
+.sticky {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 4rem;
+}
+
 .creator-info {
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: 19rem;
 }
 
 .home-info {
