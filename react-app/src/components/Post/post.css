@@ -18,6 +18,18 @@
     padding: 1rem;
 }
 
+.posted-by-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#posted-by-small-pic {
+    height: 1.5rem;
+    border-radius: .8rem;
+}
+
 .post-image {
     display: flex;
     flex-direction: row;

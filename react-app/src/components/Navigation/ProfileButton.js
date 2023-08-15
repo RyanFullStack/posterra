@@ -57,7 +57,7 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <p>Hey, {user.username.toLowerCase().split('')[0].toUpperCase() + user.username.toLowerCase().slice(1)}</p>
+            <p>Hey, {user.first_name.toLowerCase().split('')[0].toUpperCase() + user.first_name.toLowerCase().slice(1)}</p>
             <small>{user.email}</small>
             <p>
               <button id='log-out-button' onClick={handleLogout}>Log Out</button>
