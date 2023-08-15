@@ -106,7 +106,7 @@ function PostContainer({ post }) {
     return (
         <div key={post.id} className="post-container">
             {!editMode ? <>
-                <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic'/>} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
+                <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic'/>} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic'/>} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
                 <div id='break-word'>
                     <h4>{title}</h4>
                     <div><small>{body}</small></div>
