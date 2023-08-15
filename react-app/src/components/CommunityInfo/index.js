@@ -16,8 +16,13 @@ function CommunityInfo() {
     if (!owner || !community) return <h2>Loading...</h2>
 
     const handleDelete = async () => {
+        console.log(community.id, sessionUser.id)
+        if (community.id === 13 && sessionUser.id === 3) {
+            window.alert('Demo User cant delete exisiting community. Please create your own.')
+        } else {
             await dispatch(thunkDeleteCommunity(community.id))
             history.push('/')
+        }
     }
 
     const handleEdit = async () => {
