@@ -127,8 +127,9 @@ function PostForm() {
                 </form>
             </div>
             <div className='posting-rules'>
-                <h5>Posting Rules:</h5>
+            <img id='home-earth' src='/earth.png' alt='earth' />
                 <div id='rules'>
+                <h5>Posting Rules:</h5>
                     <p>1. Remember the human</p>
                     <p>2. Behave like you would in real life</p>
                     <p>3. Look for the original source of content</p>

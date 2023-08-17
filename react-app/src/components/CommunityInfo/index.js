@@ -31,6 +31,7 @@ function CommunityInfo() {
 
     return (
         <div className="community-info-container">
+            <img id='community-info-banner-pic' src='/earth.png' alt='earth' />
             <div className='community-info-contents'>
                 <div id='break-word'>
                     <b>{community?.name}</b><br />

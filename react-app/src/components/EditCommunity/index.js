@@ -130,8 +130,9 @@ function EditCommunity() {
                 </form>
             </div>
             <div className='posting-rules'>
-                <h5>Community Rules:</h5>
+            <img id='home-earth' src='/earth.png' alt='earth' />
                 <div id='rules'>
+                <h5>Community Rules:</h5>
                     <p>1. No hate speech/harassment</p>
                     <p>2. Be kind</p>
                     <p>3. Foster a sense of belonging and welcome all new members</p>
