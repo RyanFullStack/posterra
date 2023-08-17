@@ -50,6 +50,7 @@ function HomePage() {
             <div className="sidebar">
                 <div className="home-info">
                     <div className="home-info-contents">
+                    <span id='heart-shield'><i class="fa-solid fa-shield-heart" /></span>
                         <small>Posterra Premium</small>
                         <p>The best posterra experience!</p>
                         <button id='premium' onClick={() => window.alert('Coming Soon!')}>Try Now</button>

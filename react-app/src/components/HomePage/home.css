@@ -107,6 +107,7 @@
 
 #home-earth {
     width: 100%;
+    max-height: 65px;
 }
 
 .post-input-container {
@@ -146,4 +147,9 @@
 
 #create-post-input:hover {
     outline: 1px solid rgb(38, 131, 236);;
+}
+
+#heart-shield {
+    color: rgba(255, 45, 17, 0.89);
+    padding: .2rem;
 }
