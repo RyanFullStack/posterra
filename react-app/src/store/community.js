@@ -65,7 +65,7 @@ export const thunkEditCommunity = (id, data) => async (dispatch) => {
         body: JSON.stringify({
             name: data.name,
             description: data.description,
-            logo_pic: data.logo_pic,
+            logo_pic: data.logo_pic || '/communitypic.png',
             banner_pic: data.banner_pic,
             created_by: data.created_by
         })
