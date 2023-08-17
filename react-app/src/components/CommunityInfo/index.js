@@ -16,7 +16,6 @@ function CommunityInfo() {
     if (!owner || !community) return <h2>Loading...</h2>
 
     const handleDelete = async () => {
-        console.log(community.id, sessionUser.id)
         if (community.id <= 16 && sessionUser.id <= 14) {
             window.alert('Demo User cant delete exisiting community. Please create your own.')
         } else {
@@ -31,7 +30,7 @@ function CommunityInfo() {
 
     return (
         <div className="community-info-container">
-            <img id='community-info-banner-pic' src='/earth.png' alt='earth' />
+            <img id='community-info-banner-pic' src={community.banner_pic} alt='earth' />
             <div className='community-info-contents'>
                 <div id='break-word'>
                     <b>{community?.name}</b><br />

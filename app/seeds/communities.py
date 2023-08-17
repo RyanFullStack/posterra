@@ -5,52 +5,52 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_communities():
     art = Community( #1
-        name='Art', created_by=9, description='A place for art of all kinds.', logo_pic='/communitypics/art.png'
+        name='Art', created_by=9, description='A place for art of all kinds.', logo_pic='/communitypics/art.png', banner_pic='/bannerpics/art.png'
     )
     ask = Community( #2
-        name='Ask', created_by=1, description='A place for questions.', logo_pic='/communitypics/ask.jpg'
+        name='Ask', created_by=1, description='A place for questions.', logo_pic='/communitypics/ask.jpg', banner_pic='/bannerpics/ask.png'
     )
     books = Community( #3
-        name='Books', created_by=2, description='Book club!', logo_pic='/communitypics/books.jpg'
+        name='Books', created_by=2, description='Book club!', logo_pic='/communitypics/books.jpg', banner_pic='/bannerpics/books.png'
     )
     food = Community( #4
-        name='Food', created_by=6, description='A place for the foodies.', logo_pic='/communitypics/food.jpg'
+        name='Food', created_by=6, description='A place for the foodies.', logo_pic='/communitypics/food.jpg', banner_pic='/bannerpics/food.png'
     )
     funny = Community( #5
-        name='Funny', created_by=11, description='Ironic comedy welcome!', logo_pic='/communitypics/funny.jpg'
+        name='Funny', created_by=11, description='Ironic comedy welcome!', logo_pic='/communitypics/funny.jpg', banner_pic='/bannerpics/funny.png'
     )
     gaming = Community( #6
-        name='Gaming', created_by=14, description='ggez', logo_pic='/communitypics/gaming.jpg'
+        name='Gaming', created_by=14, description='ggez', logo_pic='/communitypics/gaming.jpg', banner_pic='/bannerpics/gaming.png'
     )
     history = Community( #7
-        name='History', created_by=13, description='A place to remember.', logo_pic='/communitypics/history.jpg'
+        name='History', created_by=13, description='A place to remember.', logo_pic='/communitypics/history.jpg', banner_pic='/bannerpics/history.png'
     )
     movies = Community( #8
-        name='Movies', created_by=4, description='A place for all things movies.', logo_pic='/communitypics/movies.jpg'
+        name='Movies', created_by=4, description='A place for all things movies.', logo_pic='/communitypics/movies.jpg', banner_pic='/bannerpics/movies.png'
     )
     music = Community( #9
-        name='Music', created_by=5, description='A place to discover new music.', logo_pic='/communitypics/music.jpg'
+        name='Music', created_by=5, description='A place to discover new music.', logo_pic='/communitypics/music.jpg', banner_pic='/bannerpics/music.png'
     )
     news = Community( #10
-        name='News', created_by=8, description='A place for current events.', logo_pic='/communitypics/news.png'
+        name='News', created_by=8, description='A place for current events.', logo_pic='/communitypics/news.png', banner_pic='/bannerpics/news.png'
     )
     pics = Community( #11
-        name='Pics', created_by=10, description='A place for pictures.', logo_pic='/communitypics/pics.png'
+        name='Pics', created_by=10, description='A place for pictures.', logo_pic='/communitypics/pics.png', banner_pic='/bannerpics/pics.png'
     )
     science = Community( #12
-        name='Science', created_by=12, description='Give us your best hypothesis.', logo_pic='/communitypics/science.jpg'
+        name='Science', created_by=12, description='Give us your best hypothesis.', logo_pic='/communitypics/science.jpg', banner_pic='/bannerpics/science.png'
     )
     space = Community( #13
-        name='Space', created_by=3, description='Space needs no place!', logo_pic='/communitypics/space.jpg'
+        name='Space', created_by=3, description='Space needs no place!', logo_pic='/communitypics/space.jpg', banner_pic='/bannerpics/space.png'
     )
     sports = Community( #14
-        name='Sports', created_by=7, description='A place for sports chat.', logo_pic='/communitypics/sports.jpg'
+        name='Sports', created_by=7, description='A place for sports chat.', logo_pic='/communitypics/sports.jpg', banner_pic='/bannerpics/sports.png'
     )
     tv = Community( #15
-        name='TV', created_by=4, description='A place to talk all things tv.', logo_pic='/communitypics/tv.png'
+        name='TV', created_by=4, description='A place to talk all things tv.', logo_pic='/communitypics/tv.png', banner_pic='/bannerpics/tv.png'
     )
     videos = Community( #16
-        name='Videos', created_by=10, description='A place to share videos.', logo_pic='/communitypics/videos.png'
+        name='Videos', created_by=10, description='A place to share videos.', logo_pic='/communitypics/videos.png', banner_pic='/bannerpics/videos.png'
     )
 
 
