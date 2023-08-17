@@ -30,7 +30,7 @@ function CommunityInfo() {
 
     return (
         <div className="community-info-container">
-            <img id='community-info-banner-pic' src={community.banner_pic} alt='earth' />
+            {community.banner_pic ? <img id='community-info-banner-pic' src={community.banner_pic} alt='community banner pic' /> : null}
             <div className='community-info-contents'>
                 <div id='break-word'>
                     <b>{community?.name}</b><br />

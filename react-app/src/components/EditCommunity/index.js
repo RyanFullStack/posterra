@@ -29,6 +29,7 @@ function EditCommunity() {
         }
         data()
     }, [dispatch, communityId])
+    
 
     const validateData = () => {
         const errorObj = {};
@@ -57,7 +58,7 @@ function EditCommunity() {
 
             if (newErrors) return setErrors(newErrors)
 
-            const data = {
+                        const data = {
                 name,
                 description,
                 logo_pic,
