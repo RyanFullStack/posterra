@@ -48,6 +48,8 @@ function HomePage() {
 
     shuffle(randomOrder[0].posts)
 
+    const limitedPosts = randomOrder[0].posts.slice(0, 15)
+
     return (
         <div className="main-display-container">
             <div className="post-main-container">
@@ -57,7 +59,7 @@ function HomePage() {
                         <input id='create-post-input' onClick={handlePost} placeholder="Create Post"></input>
                     </div>
                 </div> : null}
-                {randomOrder[0].posts.map(post => {
+                {limitedPosts.map(post => {
                     if (sessionUser?.id !== post.owner.id) {
                         return (
                             <PostContainer post={post} key={post.id} />
