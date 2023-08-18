@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { thunkEditCommunity, thunkGetAllCommunities, thunkGetSingleCommunity } from '../../store/community';
+import isUrl from 'is-url'
 
 
 function EditCommunity() {
@@ -29,7 +30,7 @@ function EditCommunity() {
         }
         data()
     }, [dispatch, communityId])
-    
+
 
     const validateData = () => {
         const errorObj = {};
@@ -43,6 +44,10 @@ function EditCommunity() {
 
         if (logo_pic && logo_pic.trim().length === 0) errorObj.logo_pic = 'Logo Pic URL cannot be only whitespace.'
         if (banner_pic && banner_pic.trim().length === 0) errorObj.banner_pic = 'Banner Pic URL cannot be only whitespace.'
+
+        if (logo_pic && !isUrl(logo_pic)) errorObj.logo_pic = 'URL not valid!'
+        if (logo_pic === '/communitypic.png') delete(errorObj.logo_pic)
+        if (banner_pic && !isUrl(banner_pic)) errorObj.banner_pic = 'URL not valid!'
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
