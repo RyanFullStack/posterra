@@ -30,6 +30,24 @@ function HomePage() {
 
     if (!loaded) return <h2>Loading...</h2>
 
+
+    function shuffle(array) {
+        let currentIndex = array.length
+        let randomIndex
+
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex)
+            currentIndex--
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+        }
+
+        return array;
+    }
+
+    const randomOrder = [allPosts]
+
+    shuffle(randomOrder[0].posts)
+
     return (
         <div className="main-display-container">
             <div className="post-main-container">
@@ -39,7 +57,7 @@ function HomePage() {
                         <input id='create-post-input' onClick={handlePost} placeholder="Create Post"></input>
                     </div>
                 </div> : null}
-                {allPosts.posts.map(post => {
+                {randomOrder[0].posts.map(post => {
                     if (sessionUser?.id !== post.owner.id) {
                         return (
                             <PostContainer post={post} key={post.id} />
@@ -50,7 +68,7 @@ function HomePage() {
             <div className="sidebar">
                 <div className="home-info">
                     <div className="home-info-contents">
-                    <span id='heart-shield'><i class="fa-solid fa-shield-heart" /></span>
+                        <span id='heart-shield'><i className="fa-solid fa-shield-heart" /></span>
                         <small>Posterra Premium</small>
                         <p>The best posterra experience!</p>
                         <button id='premium' onClick={() => window.alert('Coming Soon!')}>Try Now</button>
