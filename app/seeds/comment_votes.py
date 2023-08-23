@@ -1,15 +1,37 @@
 from app.models import db, CommentVote, environment, SCHEMA
 from sqlalchemy.sql import text
+import random
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_comment_votes():
 
-    comment_vote1 = CommentVote(
-        user_id=1, comment_id=1, upvote=True
-    )
+    user_ids = list(range(1, 15))
+    comment_ids = list(range(1, 201))
+    upvote_choices = [True, True, True, False]
 
-    db.session.add(comment_vote1)
+    num_comment_votes = 1000
+    comment_vote_list = []
+
+    while len(comment_vote_list) < num_comment_votes:
+        user_id = random.choice(user_ids)
+        comment_id = random.choice(comment_ids)
+        upvote = random.choice(upvote_choices)
+
+        if any(entry['user_id'] == user_id and entry['comment_id'] == comment_id for entry in comment_vote_list):
+            continue
+
+        comment_vote_list.append({'user_id': user_id, 'comment_id': comment_id, 'upvote': upvote})
+
+    for entry in comment_vote_list:
+        comment_vote = CommentVote(
+            user_id=entry['user_id'],
+            comment_id=entry['comment_id'],
+            upvote=entry['upvote']
+        )
+        db.session.add(comment_vote)
+
+    # Commit the changes to the database session
     db.session.commit()
 
 
