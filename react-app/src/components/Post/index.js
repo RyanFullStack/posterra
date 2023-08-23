@@ -105,52 +105,69 @@ function PostContainer({ post }) {
 
     return (
         <div key={post.id} className="post-container">
-            {!editMode ? <>
-                <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic'/>} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic'/>} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
-                <div id='break-word'>
-                    <h4>{title}</h4>
-                    <div><small>{body}</small></div>
-                </div></> :
 
+            <div className='post-votes'>
+                <div className='vote-arrow-container vote-up'><i className="fa-solid fa-arrow-up" /></div>
+                <span><small>44</small></span>
+                <div className='vote-arrow-container vote-down'><i className="fa-solid fa-arrow-down" /></div>
+            </div>
+
+
+            <div className='post-content'>
+                {!editMode ? <>
+                    <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic' />} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic' />} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
+                    <div id='break-word'>
+                        <h4>{title}</h4>
+                        <div><small>{body}</small></div>
+                    </div></> :
+
+                    <div className='edit-buttons'>
+                        <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
+                        <input
+                            className='create-form-select'
+                            id='edit'
+                            name='title'
+                            value={title}
+                            type="text"
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder='title your post'
+                        />
+                        <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
+                        <textarea
+                            id='post-input'
+                            className='create-form-select'
+                            name='body'
+                            type="text"
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            placeholder='post body...'
+                        />
+                        <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
+                        <input
+                            className='create-form-select'
+                            id='edit'
+                            name='ext_url'
+                            type="text"
+                            value={link}
+                            onChange={(e) => setLink(e.target.value)}
+                            placeholder='http://www.yourlink.com.jpg.jpeg.png.gif'
+                        />
+                    </div>}
                 <div className='edit-buttons'>
-                    <label htmlFor='title'>Post Title{errors.title && <span className='errors'>: {errors.title}</span>}</label>
-                    <input
-                        className='create-form-select'
-                        id='edit'
-                        name='title'
-                        value={title}
-                        type="text"
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder='title your post'
-                    />
-                    <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
-                    <textarea
-                        id='post-input'
-                        className='create-form-select'
-                        name='body'
-                        type="text"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        placeholder='post body...'
-                    />
-                    <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
-                    <input
-                        className='create-form-select'
-                        id='edit'
-                        name='ext_url'
-                        type="text"
-                        value={link}
-                        onChange={(e) => setLink(e.target.value)}
-                        placeholder='http://www.yourlink.com.jpg.jpeg.png.gif'
-                    />
-                </div>}
-            <div className='edit-buttons'>
-                {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png') || link?.toLowerCase().endsWith('.gif') || link?.toLowerCase().includes('drive.google'))
-                    ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
-                {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
-                {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
-                {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
-                {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} /> : null}
+                    {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png') || link?.toLowerCase().endsWith('.gif') || link?.toLowerCase().includes('drive.google'))
+                        ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
+                    {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
+                    {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
+                    {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
+                    {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} /> : null}
+                </div>
+
+                <div className='post-footer'>
+                        <div><i className="fa-regular fa-message" /></div>
+                        <span><small>12 Comments</small></span>
+                </div>
+
+
             </div>
         </div>
     )
