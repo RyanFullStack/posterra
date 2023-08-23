@@ -46,7 +46,7 @@ function HomePage() {
 
     const randomOrder = [allPosts]
 
-    shuffle(randomOrder[0].posts)
+    shuffle(randomOrder[0]?.posts)
 
     const limitedPosts = randomOrder[0].posts.slice(0, 15)
 

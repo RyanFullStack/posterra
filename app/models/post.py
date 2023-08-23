@@ -24,6 +24,10 @@ class Post(db.Model):
 
     community = db.relationship('Community', back_populates='posts')
 
+    comments = db.relationship('Comment', back_populates='post', cascade='all, delete-orphan')
+
+    votes = db.relationship('PostVote', back_populates='post', cascade='all, delete-orphan')
+
 
     def to_dict(self):
           return {
@@ -37,5 +41,7 @@ class Post(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
-            'community': self.community.to_dict()
+            'community': self.community.to_dict(),
+            'votes': [vote.to_dict() for vote in self.votes],
+            'comments': [comment.to_dict() for comment in self.comments]
         }
