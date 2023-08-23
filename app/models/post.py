@@ -42,6 +42,6 @@ class Post(db.Model):
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
             'community': self.community.to_dict(),
-            'comments': [comment.to_dict() for comment in self.comments],
-            'votes': [vote.to_dict() for vote in self.votes]
+            'votes': [vote.to_dict() for vote in self.votes],
+            'comments': [comment.to_dict() for comment in self.comments]
         }

@@ -36,6 +36,5 @@ class Comment(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
-            'post': self.post.to_dict(),
             'votes': [vote.to_dict() for vote in self.votes]
         }

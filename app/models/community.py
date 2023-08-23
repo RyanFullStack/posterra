@@ -36,6 +36,5 @@ class Community(db.Model):
             'banner_pic': self.banner_pic,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'owner': self.owner.to_dict(),
-            'posts': [post.to_dict() for post in self.posts]
+            'owner': self.owner.to_dict()
         }
