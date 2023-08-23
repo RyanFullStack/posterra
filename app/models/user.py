@@ -28,6 +28,12 @@ class User(db.Model, UserMixin):
 
     posts = db.relationship('Post', back_populates='owner', cascade='all, delete-orphan')
 
+    comments = db.relationship('Comment', back_populates='owner', cascade='all, delete-orphan')
+
+    post_votes = db.relationship('PostVote', back_populates='owner', cascade='all, delete-orphan')
+
+    comment_votes = db.relationship('CommentVote', back_populates='owner', cascade='all, delete-orphan')
+
 
     @property
     def password(self):
