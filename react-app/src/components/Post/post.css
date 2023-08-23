@@ -31,13 +31,14 @@
     background-color: rgb(230, 230, 230);
 }
 
-.vote-up:hover {
-    color: red;
+.vote-up-active, .vote-up:hover, .vote-up-downactive:hover, .-active  {
+    color:red;
 }
 
-.vote-down:hover {
-    color: blue;
+.vote-down-downactive, .vote-down:hover, .vote-down-active:hover, .-downactive {
+    color:blue;
 }
+
 
 .post-content {
     display: flex;
