@@ -16,7 +16,7 @@ function HomePage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const [currentPage, setCurrentPage] = useState(queryParams.get("page") || 1)
-    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'best')
+    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'random')
 
     useEffect(() => {
         const data = async () => {
@@ -92,8 +92,9 @@ function HomePage() {
                     return <PostContainer post={post} key={post.id} location={'home'} page={currentPage} sort={currentSort} />
                 })}
                 <div className="location-buttons">
-                    {currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
-                    {currentPage === allPosts.totalPages ? null : <button className="next-previous" onClick={handleNext}>Next</button>}
+                    <div className="location-gap">{currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
+                    {currentPage === allPosts.totalPages ? null : <button className="next-previous" onClick={handleNext}>Next</button>}</div>
+                    <div className="page-counter"><small>{currentPage} / {allPosts.totalPages}</small></div>
                 </div>
             </div>
             <div className="sidebar">

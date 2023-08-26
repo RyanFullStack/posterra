@@ -17,7 +17,7 @@ function Community() {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'best')
+    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'random')
 
     useEffect(() => {
         const data = async () => {

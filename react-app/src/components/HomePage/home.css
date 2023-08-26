@@ -188,7 +188,14 @@
 
 .location-buttons {
     display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 95%;
     margin-bottom: 3rem;
+    gap: 1rem;
+}
+.location-gap {
+    display: flex;
     gap: 1rem;
 }
 
