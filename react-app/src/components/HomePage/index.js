@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkGetAllPosts } from "../../store/post";
 import PostContainer from "../Post";
+import Loading from '../Loading'
 import './home.css'
 
 function HomePage() {
@@ -28,7 +29,7 @@ function HomePage() {
         history.push('/posts/new')
     }
 
-    if (!loaded) return <h2>Loading...</h2>
+    if (!loaded) return <Loading />
 
 
     function shuffle(array) {

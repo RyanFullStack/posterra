@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
 		data();
 	}, [dispatch]);
 
-	if (!loaded) return <h2>Loading...</h2>;
+	if (!loaded) return <h2><center>Posterra Loading...</center></h2>;
 
 	const changeCommunity = (e) => {
 		setSelectedCommunity(e.target.value);

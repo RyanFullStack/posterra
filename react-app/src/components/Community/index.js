@@ -5,6 +5,7 @@ import { thunkGetSingleCommunity } from "../../store/community";
 import { thunkGetCommunityPosts } from "../../store/post";
 import PostContainer from "../Post";
 import CommunityInfo from "../CommunityInfo";
+import Loading from "../Loading";
 import './community.css'
 
 function Community() {
@@ -35,8 +36,8 @@ function Community() {
     }, [dispatch, communityId])
 
 
-    if (!loaded) return <h2>Loading...</h2>
-    if (!found) return <h2>Community not found!</h2>
+    if (!loaded) return <Loading />
+    if (!found) return <h2><center>Community not found!</center></h2>
 
 
     return (
