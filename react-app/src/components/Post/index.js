@@ -6,7 +6,7 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal"
 import isUrl from 'is-url'
 import './post.css'
 
-function PostContainer({ post }) {
+function PostContainer({ post, location, page, sort }) {
     const edited = post?.edited
     const created = post?.created_at
     const owner = post?.owner
@@ -39,7 +39,8 @@ function PostContainer({ post }) {
         if (sessionUser.id <= 14 && post.id <= 80) {
             window.alert('Demo User cant delete exisiting post. Please create your own.')
         } else {
-            await dispatch(thunkDeletePost(post.id, community.id))
+            console.log(post.id, community.id, location, sort, page)
+            await dispatch(thunkDeletePost(post.id, community.id, location, sort, page))
         }
     }
 
@@ -90,7 +91,7 @@ function PostContainer({ post }) {
                 ext_url: link
             }
 
-            const response = await dispatch(thunkEditPost(community.id, post.id, data))
+            const response = await dispatch(thunkEditPost(community.id, post.id, data, location, page, sort))
 
             if (response.errors) {
                 const serverErrors = {}
@@ -156,15 +157,20 @@ function PostContainer({ post }) {
                 <div className='edit-buttons'>
                     {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png') || link?.toLowerCase().endsWith('.gif') || link?.toLowerCase().includes('drive.google'))
                         ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
-                    {sessionUser?.id === owner.id && !editMode ? <button id='editpost' onClick={handleEdit}>Edit Post</button> : null}
                     {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
                     {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
-                    {sessionUser?.id === owner.id ? <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} /> : null}
                 </div>
 
                 <div className='post-footer'>
-                        <div><i className="fa-regular fa-message" /></div>
-                        <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span>
+                    <div><i className="fa-regular fa-message" /></div>
+                    <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span>
+
+                    {sessionUser?.id === owner.id ?
+                        <>
+                            |<div onClick={handleEdit} className='post-modify-buttons'>Edit Post</div>|
+                            <OpenModalButton buttonText={'Delete Post'} modalComponent={<ConfirmDeleteModal title={'Are you sure? Cannot be undone.'} confirmFunc={handleDelete} />} />
+                        </>
+                        : null}
                 </div>
 
 

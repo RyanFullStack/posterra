@@ -82,14 +82,14 @@ function HomePage() {
                 </div> : null}
                 <div className="post-order-by">
                     SORT BY |
-                        <button onClick={handleBest} className='sort-button' disabled={currentSort === 'best'}>BEST</button> |
-                        <button onClick={handlePopular} className='sort-button' disabled={currentSort === 'popular'}>POPULAR</button> |
-                        <button onClick={handleNewest} className='sort-button' disabled={currentSort === 'newest'}>NEWEST</button> |
-                        <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button> |
-                        <button onClick={handleRandom} className='sort-button'>RANDOM</button>
+                    <button onClick={handleBest} className='sort-button' disabled={currentSort === 'best'}>BEST</button> |
+                    <button onClick={handlePopular} className='sort-button' disabled={currentSort === 'popular'}>POPULAR</button> |
+                    <button onClick={handleNewest} className='sort-button' disabled={currentSort === 'newest'}>NEWEST</button> |
+                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button> |
+                    <button onClick={handleRandom} className='sort-button'>RANDOM</button>
                 </div>
                 {allPosts.posts.map(post => {
-                           return <PostContainer post={post} key={post.id} />
+                    return <PostContainer post={post} key={post.id} location={'home'} page={currentPage} sort={currentSort} />
                 })}
                 <div className="location-buttons">
                     {currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
