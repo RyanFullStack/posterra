@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from app.models import Community, Post, db
 from app.forms import PostForm
 from datetime import datetime
+import math
+import random
 
 post_routes = Blueprint('posts', __name__)
 
@@ -12,12 +14,37 @@ def posts():
     """
     Query for all posts
     """
+    page = int(request.args.get('page', 1))
+
+    sort = request.args.get('sort', 'best')
+
     posts = Post.query.all()
 
     if not posts:
         return {'message': 'no posts found'}
 
-    return {'posts': [post.to_dict() for post in posts]}
+    if sort == 'best' or not sort:
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numvotes'], reverse=True)
+    if sort == 'popular':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numcomments'], reverse=True)
+    if sort == 'newest':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=True)
+    if sort == 'oldest':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=False)
+    if sort == 'random':
+        random_sort = list(posts)
+        random.shuffle(random_sort)
+        sorted_posts = random_sort
+
+
+    start_idx = (page - 1) * 15
+    end_idx = start_idx + 15
+    paginated_posts = sorted_posts[start_idx:end_idx]
+
+
+    return {'posts': [post.to_dict() for post in paginated_posts],
+            'totalPages': math.ceil(len(posts) / 15)
+            }
 
 @post_routes.route('/new', methods=['POST'])
 @login_required

@@ -5,8 +5,8 @@ const actionGetAllPosts = (posts) => ({
     posts
 })
 
-export const thunkGetAllPosts = () => async (dispatch) => {
-    const res = await fetch('/api/posts/')
+export const thunkGetAllPosts = (page, sort) => async (dispatch) => {
+    const res = await fetch(`/api/posts/?page=${page}&sort=${sort}`)
 
     if (res.ok) {
         const data = await res.json()

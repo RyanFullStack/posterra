@@ -108,7 +108,7 @@ function PostContainer({ post }) {
 
             <div className='post-votes'>
                 <div className={`vote-arrow-container vote-up`}><i className="fa-solid fa-arrow-up" /></div>
-                <span className=''><small>{post.numupvotes- post.numdownvotes || 0}</small></span>
+                <span className=''><small>{post.numvotes || 0}</small></span>
                 <div className={`vote-arrow-container vote-down`}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
