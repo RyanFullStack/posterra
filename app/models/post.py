@@ -42,7 +42,7 @@ class Post(db.Model):
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
             'community': self.community.to_dict(),
-            'upvotes': [vote.to_dict() for vote in self.votes if vote.upvote == True],
-            'downvotes': [vote.to_dict() for vote in self.votes if vote.upvote == False],
-            'comments': [comment.to_dict() for comment in self.comments]
+            # 'upvotes': [vote.to_dict() for vote in self.votes if vote.upvote == True],
+            # 'downvotes': [vote.to_dict() for vote in self.votes if vote.upvote == False],
+            # 'comments': [comment.to_dict() for comment in self.comments]
         }
