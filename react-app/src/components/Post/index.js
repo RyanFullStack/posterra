@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
 import OpenModalButton from "../OpenModalButton"
@@ -18,7 +18,6 @@ function PostContainer({ post }) {
     const [title, setTitle] = useState(post?.post_title)
     const [body, setBody] = useState(post?.post_body)
     const [link, setLink] = useState(post?.ext_url)
-    const [activeVote, setActiveVote] = useState('')
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
         weekday: 'short',
@@ -103,29 +102,14 @@ function PostContainer({ post }) {
         }
     }
 
-    const user_vote = post?.votes.find(vote => vote?.user_id === sessionUser?.id)
-
-
-    useEffect(() => {
-        if (user_vote?.upvote === true) {
-            setActiveVote('-active');
-        }
-        if (user_vote?.upvote === false) {
-            setActiveVote('-downactive')
-        }
-        return function() {
-            setActiveVote('')
-        }
-    }, [user_vote]);
-
 
     return (
         <div key={post.id} className="post-container">
 
             <div className='post-votes'>
-                <div className={`vote-arrow-container vote-up${activeVote}`}><i className="fa-solid fa-arrow-up" /></div>
-                <span className={activeVote}><small>{post.votes?.length || 0}</small></span>
-                <div className={`vote-arrow-container vote-down${activeVote}`}><i className="fa-solid fa-arrow-down" /></div>
+                <div className={`vote-arrow-container vote-up`}><i className="fa-solid fa-arrow-up" /></div>
+                <span className=''><small>{post.upvotes?.length - post.downvotes?.length || 0}</small></span>
+                <div className={`vote-arrow-container vote-down`}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
 

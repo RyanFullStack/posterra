@@ -24,6 +24,5 @@ class CommentVote(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'comment_id': self.comment_id,
-            'upvote': self.upvote,
-            'owner': self.owner.to_dict()
+            'upvote': self.upvote
         }

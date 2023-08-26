@@ -24,6 +24,5 @@ class PostVote(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'post_id': self.post_id,
-            'upvote': self.upvote,
-            'owner': self.owner.to_dict()
+            'upvote': self.upvote
         }
