@@ -108,7 +108,7 @@ function PostContainer({ post }) {
 
             <div className='post-votes'>
                 <div className={`vote-arrow-container vote-up`}><i className="fa-solid fa-arrow-up" /></div>
-                {/* <span className=''><small>{post.upvotes?.length - post.downvotes?.length || 0}</small></span> */}
+                <span className=''><small>{post.numupvotes- post.numdownvotes || 0}</small></span>
                 <div className={`vote-arrow-container vote-down`}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
@@ -164,7 +164,7 @@ function PostContainer({ post }) {
 
                 <div className='post-footer'>
                         <div><i className="fa-regular fa-message" /></div>
-                        {/* <span><small>{post.comments?.length || 0} {post.comments.length === 1 ? 'Comment' : 'Comments'}</small></span> */}
+                        <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span>
                 </div>
 
 
