@@ -132,6 +132,38 @@
     gap: .5rem;
 }
 
+.post-order-by {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    width: 650px;
+    height: 60px;
+    background-color: white;
+    border-radius: .3rem;
+    outline: .5px solid rgb(180,180,180);
+    padding: .6rem;
+    margin: 1rem;
+    margin-bottom: 0;
+}
+
+.sort-button {
+    width: 5rem;
+    height: 2rem;
+    border-radius: .3rem;
+    border: none;
+    outline: 1px solid rgb(207, 207, 207);
+    background-color: rgba(235, 235, 235, 0.678);
+    font-weight: bold;
+}
+
+.sort-button:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+
 #post-profile-pic {
     height: 2rem;
     padding: 0 .5rem;
@@ -146,10 +178,44 @@
 }
 
 #create-post-input:hover {
-    outline: 1px solid rgb(38, 131, 236);;
+    outline: 1px solid rgb(38, 131, 236);
 }
 
 #heart-shield {
     color: rgba(255, 45, 17, 0.89);
     padding: .2rem;
+}
+
+.location-buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 95%;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+.location-gap {
+    display: flex;
+    gap: 1rem;
+}
+
+.location-buttons button {
+    width: 8rem;
+    height: 2rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: rgb(38, 131, 236);
+    color: white;
+    outline: 1px solid black;
+}
+.location-buttons button:hover {
+    background-color: rgb(85, 157, 238);
+    cursor: pointer;
+}
+#previous-button {
+    background-color: rgba(255, 45, 17, 0.89);
+}
+#previous-button:hover {
+    background-color: rgba(255, 89, 67, 0.89);
+    cursor: pointer;
 }

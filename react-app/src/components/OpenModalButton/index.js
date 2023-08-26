@@ -16,6 +16,12 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+  if (buttonText === 'Delete Post') {
+    return (
+      <div onClick={onClick} className='post-modify-buttons'>Delete Post</div>
+    )
+  }
+
   return (
     <button onClick={onClick} id={(buttonText === 'Log In' || buttonText === 'Sign Up')  ? 'nav-button' : 'deletepost'} >{buttonText}</button>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { thunkGetAllPosts } from "../../store/post";
 import PostContainer from "../Post";
 import Loading from '../Loading'
@@ -13,9 +13,14 @@ function HomePage() {
     const allPosts = useSelector(state => state.posts.posts)
     const sessionUser = useSelector(state => state.session.user)
 
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const [currentPage, setCurrentPage] = useState(queryParams.get("page") || 1)
+    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'random')
+
     useEffect(() => {
         const data = async () => {
-            await dispatch(thunkGetAllPosts())
+            await dispatch(thunkGetAllPosts(currentPage, currentSort))
             setLoaded(true)
         }
         data()
@@ -23,7 +28,7 @@ function HomePage() {
         return function () {
             setLoaded(false)
         }
-    }, [dispatch])
+    }, [dispatch, currentPage, currentSort])
 
     const handlePost = () => {
         history.push('/posts/new')
@@ -32,24 +37,39 @@ function HomePage() {
     if (!loaded) return <Loading />
 
 
-    function shuffle(array) {
-        let currentIndex = array.length
-        let randomIndex
-
-        while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex)
-            currentIndex--
-            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+    const handleBack = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1)
         }
-
-        return array;
     }
 
-    const randomOrder = [allPosts]
+    const handleNext = () => {
+        if (currentPage > 0 && currentPage < allPosts.totalPages) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
-    shuffle(randomOrder[0]?.posts)
-
-    const limitedPosts = randomOrder[0].posts.slice(0, 15)
+    const handleBest = () => {
+        setCurrentPage(1)
+        setCurrentSort('best')
+    }
+    const handlePopular = () => {
+        setCurrentPage(1)
+        setCurrentSort('popular')
+    }
+    const handleNewest = () => {
+        setCurrentPage(1)
+        setCurrentSort('newest')
+    }
+    const handleOldest = () => {
+        setCurrentPage(1)
+        setCurrentSort('oldest')
+    }
+    const handleRandom = () => {
+        dispatch(thunkGetAllPosts(1, 'random'))
+        setCurrentPage(1)
+        setCurrentSort('random')
+    }
 
     return (
         <div className="main-display-container">
@@ -60,13 +80,22 @@ function HomePage() {
                         <input id='create-post-input' onClick={handlePost} placeholder="Create Post"></input>
                     </div>
                 </div> : null}
-                {limitedPosts.map(post => {
-                    if (sessionUser?.id !== post.owner.id) {
-                        return (
-                            <PostContainer post={post} key={post.id} />
-                        )
-                    } else return null;
+                <div className="post-order-by">
+                    SORT BY |
+                    <button onClick={handleBest} className='sort-button' disabled={currentSort === 'best'}>BEST</button> |
+                    <button onClick={handlePopular} className='sort-button' disabled={currentSort === 'popular'}>POPULAR</button> |
+                    <button onClick={handleNewest} className='sort-button' disabled={currentSort === 'newest'}>NEWEST</button> |
+                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button> |
+                    <button onClick={handleRandom} className='sort-button'>RANDOM</button>
+                </div>
+                {allPosts.posts.map(post => {
+                    return <PostContainer post={post} key={post.id} location={'home'} page={currentPage} sort={currentSort} />
                 })}
+                <div className="location-buttons">
+                    <div className="location-gap">{currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
+                    {currentPage === allPosts.totalPages ? null : <button className="next-previous" onClick={handleNext}>Next</button>}</div>
+                    <div className="page-counter"><small>{currentPage} / {allPosts.totalPages}</small></div>
+                </div>
             </div>
             <div className="sidebar">
                 <div className="home-info">

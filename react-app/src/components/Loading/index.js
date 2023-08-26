@@ -4,7 +4,7 @@ function Loading() {
 
     return (
         <div className="loading-div">
-            <img src='/PosterraLoading.gif' />
+            <img src='/PosterraLoading.gif' alt='Loading...'/>
         </div>
     )
 }

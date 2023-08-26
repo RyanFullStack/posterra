@@ -42,7 +42,6 @@ class Post(db.Model):
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
             'community': self.community.to_dict(),
-            'numupvotes': sum(1 for vote in self.votes if vote.upvote),
-            'numdownvotes': sum(1 for vote in self.votes if not vote.upvote),
+            'numvotes': sum(1 for vote in self.votes if vote.upvote) - sum(1 for vote in self.votes if not vote.upvote),
             'numcomments': len(self.comments)
         }

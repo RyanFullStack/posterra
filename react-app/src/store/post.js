@@ -5,8 +5,8 @@ const actionGetAllPosts = (posts) => ({
     posts
 })
 
-export const thunkGetAllPosts = () => async (dispatch) => {
-    const res = await fetch('/api/posts/')
+export const thunkGetAllPosts = (page, sort) => async (dispatch) => {
+    const res = await fetch(`/api/posts/?page=${page}&sort=${sort}`)
 
     if (res.ok) {
         const data = await res.json()
@@ -28,8 +28,8 @@ export const getUserInfo = (id) => async (dispatch) => {
     }
 }
 
-export const thunkGetCommunityPosts = (id) => async (dispatch) => {
-    const res = await fetch(`/api/communities/${id}/posts`)
+export const thunkGetCommunityPosts = (id, sort) => async (dispatch) => {
+    const res = await fetch(`/api/communities/${id}/posts?sort=${sort}`)
 
     if (res.ok) {
         const data = await res.json()
@@ -64,7 +64,7 @@ export const thunkCreatePost = (data) => async (dispatch) => {
 }
 
 
-export const thunkEditPost = (communityId, postId, data) => async (dispatch) => {
+export const thunkEditPost = (communityId, postId, data, location, page, sort) => async (dispatch) => {
     const res = await fetch(`/api/posts/${postId}/edit`, {
         method: "PUT",
         headers: {
@@ -80,7 +80,11 @@ export const thunkEditPost = (communityId, postId, data) => async (dispatch) => 
     })
     if (res.ok) {
         const data = await res.json();
-        dispatch(thunkGetCommunityPosts(communityId))
+        if (location === 'home') {
+            dispatch(thunkGetAllPosts(page, sort))
+        } else {
+            dispatch(thunkGetCommunityPosts(communityId))
+        }
         return data
     } else {
         return res
@@ -88,13 +92,18 @@ export const thunkEditPost = (communityId, postId, data) => async (dispatch) => 
 }
 
 
-export const thunkDeletePost = (post_id, community_id) => async (dispatch) => {
+export const thunkDeletePost = (post_id, community_id, location, sort, page) => async (dispatch) => {
     const res = await fetch(`/api/posts/${post_id}/delete`, {
         method: 'DELETE'
     })
+
     if (res.ok) {
         const data = await res.json();
-        dispatch(thunkGetCommunityPosts(community_id))
+        if (location === 'home') {
+            dispatch(thunkGetAllPosts(page, sort))
+        } else {
+            dispatch(thunkGetCommunityPosts(community_id, sort))
+        }
         return data
     } else {
         return res
@@ -104,9 +113,9 @@ export const thunkDeletePost = (post_id, community_id) => async (dispatch) => {
 const initialState = { posts: null }
 
 export default function postReducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_POSTS:
-            return { ...state, posts: action.posts}
+            return { ...state, posts: action.posts }
         default:
             return state
     }

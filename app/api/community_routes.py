@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Community, Post, db
 from app.forms import CommunityForm
 from datetime import datetime
+import random
 
 community_routes = Blueprint('communities', __name__)
 
@@ -25,12 +26,31 @@ def community_posts(id):
     """
     Query for all posts within a community
     """
+    sort = request.args.get('sort', 'best')
+
     community = Community.query.get(id)
+
+    posts = community.posts
+
+    print('*********', sort)
+
+    if sort == 'best' or not sort:
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numvotes'], reverse=True)
+    if sort == 'popular':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numcomments'], reverse=True)
+    if sort == 'newest':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=True)
+    if sort == 'oldest':
+        sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=False)
+    if sort == 'random':
+        random_sort = list(posts)
+        random.shuffle(random_sort)
+        sorted_posts = random_sort
 
     if not community:
         return {'message': 'community not found'}
 
-    return {'posts': [post.to_dict() for post in community.posts]}
+    return {'posts': [post.to_dict() for post in sorted_posts]}
 
 
 @community_routes.route('/new', methods=['POST'])

@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    max-height: 600px;
+    max-height: 700px;
     width: 650px;
     background-color: rgb(255, 255, 255);
     border-radius: .1rem;
@@ -31,11 +31,11 @@
     background-color: rgb(230, 230, 230);
 }
 
-.vote-up-active, .vote-up:hover, .vote-up-downactive:hover, .-active  {
+.vote-up:hover {
     color:red;
 }
 
-.vote-down-downactive, .vote-down:hover, .vote-down-active:hover, .-downactive {
+.vote-down:hover {
     color:blue;
 }
 
@@ -44,7 +44,7 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    max-height: 600px;
+    max-height: 700px;
     width: 650px;
     align-items: flex-start;
     justify-content: flex-start;
@@ -120,4 +120,9 @@
 
 #edit {
     width: 80%;
+}
+
+.post-modify-buttons {
+    cursor: pointer;
+    color: red;
 }
