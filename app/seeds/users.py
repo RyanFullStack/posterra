@@ -2,7 +2,7 @@ from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_users():
     doug = User( #1
         username='altitude', first_name='Doug', last_name='Smith', email='doug@aa.io', password='password', bio='Aviation Enthusiast/Business Owner', profile_pic='/userpics/doug.jpg'
