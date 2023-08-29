@@ -32,9 +32,7 @@ def community_posts(id):
 
     posts = community.posts
 
-    print('*********', sort)
-
-    if sort == 'best' or not sort:
+      if sort == 'best' or not sort:
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numvotes'], reverse=True)
     if sort == 'popular':
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numcomments'], reverse=True)
