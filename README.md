@@ -2,7 +2,7 @@
       
 Posterra is a community based platform inspired by Reddit.
 
-Check out [Posterra]((https://pos-terra.onrender.com/)) (Moving from Heroku soon)
+Check out [Posterra]((https://pos-terra.onrender.com/))
 
 ## Index
 
