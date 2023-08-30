@@ -47,6 +47,15 @@ Check out [Posterra]((https://pos-terra.onrender.com/)) (Moving from Heroku soon
 * Users can update their Vote
 * Users can delete their Vote
 
+## Awards
+* Users can give Awards for a post
+* Users can view all Awards on a post
+
+## Saves
+* Users can save posts to their list
+* Users can view all Saves
+* Users can remove Saves
+
 
 ### AWS
 Logged-in Users can
