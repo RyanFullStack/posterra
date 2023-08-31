@@ -27,13 +27,13 @@
         height: 2rem;
         border-radius: 2rem;
         border: none;
-        background-color: rgb(38, 131, 236);
+        background-color: rgb(38, 74, 236);
         color: white;
         margin-bottom: 1rem;
 }
 
 #editcomm:hover {
-    background-color: rgb(70, 148, 236);
+    background-color: rgb(70, 95, 236);
     cursor: pointer;
 }
 

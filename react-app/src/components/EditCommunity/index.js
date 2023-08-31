@@ -48,6 +48,7 @@ function EditCommunity() {
         if (logo_pic && !isUrl(logo_pic)) errorObj.logo_pic = 'URL not valid!'
         if (logo_pic === '/communitypic.png') delete(errorObj.logo_pic)
         if (banner_pic && !isUrl(banner_pic)) errorObj.banner_pic = 'URL not valid!'
+        if (banner_pic === '/bannerpic.png') delete(errorObj.banner_pic)
 
         if (Object.keys(errorObj).length > 0) return errorObj
         else return false
