@@ -83,7 +83,7 @@ export const thunkEditPost = (communityId, postId, data, location, page, sort) =
         if (location === 'home') {
             dispatch(thunkGetAllPosts(page, sort))
         } else {
-            dispatch(thunkGetCommunityPosts(communityId))
+            dispatch(thunkGetCommunityPosts(communityId, sort))
         }
         return data
     } else {

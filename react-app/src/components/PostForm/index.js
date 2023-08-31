@@ -13,7 +13,8 @@ function PostForm() {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [ext_url, setExtUrl] = useState('')
-    const [communityId, setCommunityId] = useState('1')
+    const community = useSelector(state => state.communities.singleCommunity)
+    const [communityId, setCommunityId] = useState(community?.id || '1')
     const [errors, setErrors] = useState({});
     const currentUser = useSelector(state => state.session.user);
     const allCommunities = useSelector((state) => state.communities.communities);

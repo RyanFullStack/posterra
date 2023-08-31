@@ -101,7 +101,7 @@
 }
 
 #createcomm:hover {
-    background-color: rgba(238, 239, 255, 0.808);
+    background-color: rgba(221, 222, 255, 0.808);
     cursor: pointer;
 }
 
@@ -218,4 +218,7 @@
 #previous-button:hover {
     background-color: rgba(255, 89, 67, 0.89);
     cursor: pointer;
+}
+#ryan-profile {
+    width: 120px;
 }

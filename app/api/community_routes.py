@@ -18,7 +18,9 @@ def communities():
     if not communities:
         return {'message': 'no communities found'}
 
-    return {'communities': [community.to_dict() for community in communities]}
+    sorted_communities = sorted(communities, key=lambda community: community.to_dict()['name'].lower(), reverse=False)
+
+    return {'communities': [community.to_dict() for community in sorted_communities]}
 
 
 @community_routes.route('/<int:id>/posts')
@@ -32,7 +34,7 @@ def community_posts(id):
 
     posts = community.posts
 
-    
+
     if sort == 'best' or not sort:
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numvotes'], reverse=True)
     if sort == 'popular':
@@ -61,7 +63,7 @@ def create_community():
     form = CommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        name = form.data['name']
+        name = form.data['name'].title()
         created_by = form.data['created_by']
         description = form.data['description']
 
