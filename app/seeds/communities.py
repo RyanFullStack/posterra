@@ -2,7 +2,7 @@ from app.models import db, Community, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_communities():
     art = Community( #1
         name='Art', created_by=9, description='A place for art of all kinds.', logo_pic='/communitypics/art.png', banner_pic='/bannerpics/art.png'

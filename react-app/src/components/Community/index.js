@@ -17,7 +17,7 @@ function Community() {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'random')
+    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'newest')
 
     useEffect(() => {
         const data = async () => {
@@ -55,22 +55,22 @@ function Community() {
     const handleOldest = () => {
         setCurrentSort('oldest')
     }
-    const handleRandom = () => {
-        dispatch(thunkGetCommunityPosts(communityId, 'random'))
-        setCurrentSort('random')
-    }
+    // const handleRandom = () => {
+    //     dispatch(thunkGetCommunityPosts(communityId, 'random'))
+    //     setCurrentSort('random')
+    // }
 
 
     return (
         <div className="community-container">
             <div className="post-main-container">
                 <div className="post-order-by">
-                    SORT BY |
+                    SORT BY
                     <button onClick={handleBest} className='sort-button' disabled={currentSort === 'best'}>BEST</button> |
                     <button onClick={handlePopular} className='sort-button' disabled={currentSort === 'popular'}>POPULAR</button> |
                     <button onClick={handleNewest} className='sort-button' disabled={currentSort === 'newest'}>NEWEST</button> |
-                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button> |
-                    <button onClick={handleRandom} className='sort-button'>RANDOM</button>
+                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button>
+                    {/* <button onClick={handleRandom} className='sort-button'>RANDOM</button> */}
                 </div>
                 {communityPosts.posts.map(post => {
                     return (

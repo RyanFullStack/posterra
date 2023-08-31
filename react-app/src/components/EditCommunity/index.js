@@ -10,9 +10,9 @@ function EditCommunity() {
     const history = useHistory()
     const community = useSelector(state => state.communities.singleCommunity)
     const currentUser = useSelector(state => state.session.user);
-    const [name, setName] = useState()
-    const [description, setDescription] = useState()
-    const [logo_pic, setLogoPic] = useState()
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [logo_pic, setLogoPic] = useState('')
     const [banner_pic, setBannerPic] = useState('')
     const [loaded, setLoaded] = useState(false)
     const [errors, setErrors] = useState({});
@@ -22,10 +22,10 @@ function EditCommunity() {
         const data = async () => {
             const res = await dispatch(thunkGetSingleCommunity(communityId))
             const comm = await res
-            setName(comm?.name)
-            setDescription(comm?.description)
-            setLogoPic(comm?.logo_pic)
-            setBannerPic(comm?.banner_pic)
+            setName(comm?.name || '')
+            setDescription(comm?.description || '')
+            setLogoPic(comm?.logo_pic || '')
+            setBannerPic(comm?.banner_pic || '')
             setLoaded(true)
         }
         data()

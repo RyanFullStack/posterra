@@ -16,7 +16,7 @@ def posts():
     """
     page = int(request.args.get('page', 1))
 
-    sort = request.args.get('sort', 'best')
+    sort = request.args.get('sort', 'newest')
 
     posts = Post.query.all()
 
@@ -31,10 +31,10 @@ def posts():
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=True)
     if sort == 'oldest':
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=False)
-    if sort == 'random':
-        random_sort = list(posts)
-        random.shuffle(random_sort)
-        sorted_posts = random_sort
+    # if sort == 'random':
+    #     random_sort = list(posts)
+    #     random.shuffle(random_sort)
+    #     sorted_posts = random_sort
 
 
     start_idx = (page - 1) * 15

@@ -16,7 +16,7 @@ function HomePage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const [currentPage, setCurrentPage] = useState(queryParams.get("page") || 1)
-    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'random')
+    const [currentSort, setCurrentSort] = useState(queryParams.get("sort") || 'newest')
 
     useEffect(() => {
         const data = async () => {
@@ -65,11 +65,11 @@ function HomePage() {
         setCurrentPage(1)
         setCurrentSort('oldest')
     }
-    const handleRandom = () => {
-        dispatch(thunkGetAllPosts(1, 'random'))
-        setCurrentPage(1)
-        setCurrentSort('random')
-    }
+    // const handleRandom = () => {
+    //     dispatch(thunkGetAllPosts(1, 'random'))
+    //     setCurrentPage(1)
+    //     setCurrentSort('random')
+    // }
 
     return (
         <div className="main-display-container">
@@ -81,12 +81,12 @@ function HomePage() {
                     </div>
                 </div> : null}
                 <div className="post-order-by">
-                    SORT BY |
+                    SORT BY
                     <button onClick={handleBest} className='sort-button' disabled={currentSort === 'best'}>BEST</button> |
                     <button onClick={handlePopular} className='sort-button' disabled={currentSort === 'popular'}>POPULAR</button> |
                     <button onClick={handleNewest} className='sort-button' disabled={currentSort === 'newest'}>NEWEST</button> |
-                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button> |
-                    <button onClick={handleRandom} className='sort-button'>RANDOM</button>
+                    <button onClick={handleOldest} className='sort-button' disabled={currentSort === 'oldest'}>OLDEST</button>
+                    {/* <button onClick={handleRandom} className='sort-button'>RANDOM</button> */}
                 </div>
                 {allPosts.posts.map(post => {
                     return <PostContainer post={post} key={post.id} location={'home'} page={currentPage} sort={currentSort} />
@@ -120,9 +120,11 @@ function HomePage() {
                     <div className="creator-info">
                         <div className="home-info">
                             <div className="home-info-contents">
+                                <a href='https://ryanerickson.netlify.app/' target='_blank' rel="noreferrer"><img src='/userpics/RyanProfile.jpg' alt='Ryan Erickson' id='ryan-profile'/></a>
                                 <p><small>Created by: Ryan Erickson</small></p>
-                                <p><a href='https://github.com/RyanFullStack' target='_blank' rel="noreferrer"><button id='premium'>Check out my GitHub</button></a></p>
-                                <a href='https://www.linkedin.com/in/ryan-erickson-dev/' target='_blank' rel="noreferrer"><button id='createpost'>Connect with me on Linkedin</button></a>
+                                <p><a href='https://ryanerickson.netlify.app/' target='_blank' rel="noreferrer"><button id='createcomm'>View my Portfolio</button></a></p>
+                                <a href='https://github.com/RyanFullStack' target='_blank' rel="noreferrer"><button id='createpost'>Check out my GitHub</button></a>
+                                <a href='https://www.linkedin.com/in/ryan-erickson-dev/' target='_blank' rel="noreferrer"><button id='premium'>Connect with me on Linkedin</button></a>
                             </div>
                         </div>
                     </div>

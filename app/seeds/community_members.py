@@ -2,7 +2,7 @@ from app.models import db, environment, SCHEMA
 from sqlalchemy.sql import text
 from app.models.community_members import community_members
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_community_members():
     connection = db.engine.connect()
 

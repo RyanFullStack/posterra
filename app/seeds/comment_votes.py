@@ -3,7 +3,6 @@ from sqlalchemy.sql import text
 import random
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_comment_votes():
 
     user_ids = list(range(1, 15))

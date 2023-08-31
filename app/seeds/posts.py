@@ -7,7 +7,6 @@ start_date = datetime(year=2023, month=6, day=1)
 end_date = datetime.now()
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_posts():
     post1 = Post(
         created_by=9, community_id=1, post_title='The New American Gothic', post_body='Oil on canvas, 2017, Criselda Vesquez', ext_url='https://drive.google.com/uc?id=13IpRkqZ6tqnxFFT1or6-7f7MM6eeQav-', created_at=fake.date_time_between(start_date=start_date, end_date=end_date)
