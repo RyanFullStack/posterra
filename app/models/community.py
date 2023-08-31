@@ -15,7 +15,7 @@ class Community(db.Model):
     created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     description = db.Column(db.String(255))
     logo_pic = db.Column(db.String, default='/communitypic.png')
-    banner_pic = db.Column(db.String)
+    banner_pic = db.Column(db.String, default='/bannerpic.png')
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
 
