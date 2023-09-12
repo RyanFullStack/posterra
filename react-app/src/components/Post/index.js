@@ -54,12 +54,15 @@ function PostContainer({ post, location, page, sort }) {
 
     useEffect(() => {
         if (votes?.length) {
-            const userVoteObj = votes.find(vote => vote.user_id === sessionUser.id);
+            const userVoteObj = votes.find(vote => vote?.user_id === sessionUser?.id);
             setUserVote(userVoteObj?.upvote);
         } else {
             setUserVote(null);
         }
-    }, [votes, sessionUser.id]);
+        return function () {
+            setUserVote(null)
+        }
+    }, [votes, sessionUser]);
 
     useEffect(() => {
         if (userVote) {
@@ -77,7 +80,12 @@ function PostContainer({ post, location, page, sort }) {
             setDownvote('')
             setVoteCount('')
         }
-    }, [userVote])
+        return function () {
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        }
+    }, [userVote, sessionUser])
 
 
     const handleDelete = async () => {
@@ -147,14 +155,40 @@ function PostContainer({ post, location, page, sort }) {
         }
     }
 
+    const handleUpvote = async() => {
+        if (downvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            await fetch(`/api/votes/${post.id}/addupvote`)
+            return
+        }
+        if (upvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+        } else {
+            await fetch(`/api/votes/${post.id}/addupvote`)
+        }
+    }
+
+    const handleDownvote = async() => {
+        if (upvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            await fetch(`/api/votes/${post.id}/adddownvote`)
+            return
+        }
+        if (downvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+        } else {
+            await fetch(`/api/votes/${post.id}/adddownvote`)
+        }
+    }
+
 
     return (
         <div key={post.id} className="post-container">
 
             <div className='post-votes'>
-                <div className={`vote-arrow-container vote-up ${upvote}`}><i className="fa-solid fa-arrow-up" /></div>
+                <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
                 <span className={voteCount}><small>{post.numvotes || 0}</small></span>
-                <div className={`vote-arrow-container vote-down ${downvote}`}><i className="fa-solid fa-arrow-down" /></div>
+                <div className={`vote-arrow-container vote-down ${downvote}`} onClick={handleDownvote}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
 
