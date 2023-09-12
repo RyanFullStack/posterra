@@ -14,6 +14,9 @@
     outline: .5px solid rgba(180, 180, 180, .8);
     margin: 1rem 0;
 }
+.pointer {
+    cursor: pointer;
+}
 
 .post-votes {
     background-color: rgb(245, 245, 245);
@@ -29,6 +32,7 @@
 
 .vote-arrow-container:hover {
     background-color: rgb(230, 230, 230);
+    cursor: pointer;
 }
 
 .vote-up:hover {
@@ -56,6 +60,11 @@
     justify-content: flex-start;
     text-align: left;
     padding: .5rem;
+    cursor: pointer;
+}
+
+.comments-display:hover {
+    background-color: rgba(180, 180, 180, .8)
 }
 
 .post-footer {

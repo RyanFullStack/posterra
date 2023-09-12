@@ -8,6 +8,7 @@ import Community from "./components/Community";
 import CommunityForm from "./components/CommunityForm";
 import EditCommunity from "./components/EditCommunity";
 import PostForm from "./components/PostForm";
+import PostInfo from "./components/PostInfo";
 import './index.css'
 
 function App() {
@@ -23,20 +24,23 @@ function App() {
     <div>
       <Navigation isLoaded={isLoaded} />
       <Switch>
-        <Route exact path="/" >
-          <HomePage />
-        </Route>
         <Route path='/communities/new'>
           <CommunityForm />
         </Route>
         <Route path='/posts/new'>
           <PostForm />
         </Route>
+        <Route path='/posts/:postId'>
+          <PostInfo />
+        </Route>
         <Route path='/communities/:communityId/edit'>
           <EditCommunity />
         </Route>
         <Route path='/communities/:communityId'>
           <Community />
+        </Route>
+        <Route path="/" >
+          <HomePage />
         </Route>
       </Switch>
 

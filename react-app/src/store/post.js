@@ -1,9 +1,26 @@
 const GET_ALL_POSTS = 'posts/ALL'
+const GET_SINGLE_POST = 'posts/ONE'
+
+const actionGetSinglePost = (post) => ({
+    type: GET_SINGLE_POST,
+    post
+})
 
 const actionGetAllPosts = (posts) => ({
     type: GET_ALL_POSTS,
     posts
 })
+
+export const thunkGetSinglePost = (id) => async(dispatch) => {
+    const res = await fetch(`/api/posts/${id}`)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionGetSinglePost(data))
+        return data
+    } else {
+        return res
+    }
+}
 
 export const thunkGetAllPosts = (page, sort) => async (dispatch) => {
     const res = await fetch(`/api/posts/?page=${page}&sort=${sort}`)
@@ -110,12 +127,14 @@ export const thunkDeletePost = (post_id, community_id, location, sort, page) => 
     }
 }
 
-const initialState = { posts: null }
+const initialState = { posts: null, singlePost: null }
 
 export default function postReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_POSTS:
             return { ...state, posts: action.posts }
+        case GET_SINGLE_POST:
+            return { ...state, singlePost: action.post }
         default:
             return state
     }
