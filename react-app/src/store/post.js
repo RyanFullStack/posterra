@@ -99,7 +99,11 @@ export const thunkEditPost = (communityId, postId, data, location, page, sort) =
         const data = await res.json();
         if (location === 'home') {
             dispatch(thunkGetAllPosts(page, sort))
-        } else {
+        }
+        if (location === 'post-info') {
+            dispatch(thunkGetSinglePost(postId))
+        }
+        else {
             dispatch(thunkGetCommunityPosts(communityId, sort))
         }
         return data
@@ -118,7 +122,8 @@ export const thunkDeletePost = (post_id, community_id, location, sort, page) => 
         const data = await res.json();
         if (location === 'home') {
             dispatch(thunkGetAllPosts(page, sort))
-        } else {
+        }
+        else {
             dispatch(thunkGetCommunityPosts(community_id, sort))
         }
         return data
