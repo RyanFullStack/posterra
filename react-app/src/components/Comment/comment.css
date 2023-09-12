@@ -1,0 +1,29 @@
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 650px;
+    background-color: rgb(255, 255, 255);
+    border-radius: .1rem;
+    outline: .5px solid rgba(180, 180, 180, .8);
+}
+
+.single-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: .5rem;
+}
+
+.comment-by {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-body-content {
+    margin-left: 25px;
+    margin-top: 10px;
+    font-size: .9rem;
+}

@@ -2,8 +2,10 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkGetSinglePost } from "../../store/post";
+import CommentContainer from "../Comment";
 import PostContainer from "../Post";
 import Loading from "../Loading";
+import '../Comment/comment.css'
 
 function PostInfo() {
     const { postId } = useParams()
@@ -57,9 +59,7 @@ function PostInfo() {
                 <div className="comments-container">
                     {comments.map(comment => {
                         return (
-                            <div>
-                                {comment.comment_body}
-                            </div>
+                            <CommentContainer comment={comment} />
                         )
                     })}
                 </div>
