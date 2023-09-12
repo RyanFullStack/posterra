@@ -23,6 +23,7 @@ function PostContainer({ post, location, page, sort }) {
     const [upvote, setUpvote] = useState('')
     const [downvote, setDownvote] = useState('')
     const [voteCount, setVoteCount] = useState('')
+    const [totalVotes, setTotalVotes] = useState(post.numvotes || 0)
 
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
@@ -159,12 +160,24 @@ function PostContainer({ post, location, page, sort }) {
         if (downvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/addupvote`)
+            setTotalVotes(prev => prev+2)
+            setUpvote('red')
+            setDownvote('')
+            setVoteCount('red')
             return
         }
         if (upvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
+            setTotalVotes(prev => prev-1)
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
         } else {
             await fetch(`/api/votes/${post.id}/addupvote`)
+            setTotalVotes(prev => prev+1)
+            setUpvote('red')
+            setDownvote('')
+            setVoteCount('red')
         }
     }
 
@@ -172,12 +185,24 @@ function PostContainer({ post, location, page, sort }) {
         if (upvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/adddownvote`)
+            setTotalVotes(prev => prev-2)
+            setUpvote('')
+            setDownvote('blue')
+            setVoteCount('blue')
             return
         }
         if (downvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
+            setTotalVotes(prev => prev+1)
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
         } else {
             await fetch(`/api/votes/${post.id}/adddownvote`)
+            setTotalVotes(prev => prev-1)
+            setUpvote('')
+            setDownvote('blue')
+            setVoteCount('blue')
         }
     }
 
@@ -187,7 +212,7 @@ function PostContainer({ post, location, page, sort }) {
 
             <div className='post-votes'>
                 <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
-                <span className={voteCount}><small>{post.numvotes || 0}</small></span>
+                <span className={voteCount}><small>{totalVotes}</small></span>
                 <div className={`vote-arrow-container vote-down ${downvote}`} onClick={handleDownvote}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
