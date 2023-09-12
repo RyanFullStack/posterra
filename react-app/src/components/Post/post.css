@@ -14,6 +14,9 @@
     outline: .5px solid rgba(180, 180, 180, .8);
     margin: 1rem 0;
 }
+.pointer {
+    cursor: pointer;
+}
 
 .post-votes {
     background-color: rgb(245, 245, 245);
