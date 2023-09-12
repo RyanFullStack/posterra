@@ -281,7 +281,7 @@ function PostContainer({ post, location, page, sort }) {
 
                 <div className='post-footer' onClick={e=>{e.stopPropagation()}}>
                     <div className='comments-display'><i className="fa-regular fa-message" />&nbsp;
-                    <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span></div>
+                    <span onClick={handlePostRedirect}><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span></div>
 
                     {sessionUser?.id === owner.id ?
                         <>
