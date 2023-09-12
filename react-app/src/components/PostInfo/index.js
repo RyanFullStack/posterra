@@ -9,10 +9,12 @@ function PostInfo() {
     const { postId } = useParams()
     const [loaded, setLoaded] = useState(false)
     const [found, setFound] = useState(false)
+    const [comments, setComments] = useState([])
     const dispatch = useDispatch()
     const history = useHistory()
 
     const post = useSelector(state => state.posts.singlePost)
+
 
     useEffect(() => {
         const data = async () => {
@@ -28,7 +30,18 @@ function PostInfo() {
             setLoaded(false)
             setFound(false)
         }
-    }, [dispatch])
+    }, [dispatch, postId])
+
+    useEffect(() => {
+        const data = async () => {
+            const res = await fetch(`/api/comments/${postId}`)
+            const com = await res.json()
+            if (com.comments) {
+                setComments(com.comments)
+            } else setComments([])
+        }
+        data()
+    }, [postId])
 
     if (!loaded) return <Loading />
     if (!found) return <h2><center>Post not found!</center></h2>
@@ -42,11 +55,13 @@ function PostInfo() {
             <div className="post-main-container">
                 <PostContainer post={post} />
                 <div className="comments-container">
-
-
-
-
-
+                    {comments.map(comment => {
+                        return (
+                            <div>
+                                {comment.comment_body}
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
 
