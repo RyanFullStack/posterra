@@ -20,6 +20,9 @@ function PostContainer({ post, location, page, sort }) {
     const [link, setLink] = useState(post?.ext_url)
     const [votes, setVotes] = useState()
     const [userVote, setUserVote] = useState(null)
+    const [upvote, setUpvote] = useState('')
+    const [downvote, setDownvote] = useState('')
+    const [voteCount, setVoteCount] = useState('')
 
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
@@ -57,6 +60,24 @@ function PostContainer({ post, location, page, sort }) {
             setUserVote(null);
         }
     }, [votes, sessionUser.id]);
+
+    useEffect(() => {
+        if (userVote) {
+            setUpvote('red')
+            setVoteCount('red')
+            setDownvote('')
+        }
+        if (userVote === false) {
+            setDownvote('blue')
+            setVoteCount('blue')
+            setUpvote('')
+        }
+        if (userVote === null) {
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        }
+    }, [userVote])
 
 
     const handleDelete = async () => {
@@ -131,9 +152,9 @@ function PostContainer({ post, location, page, sort }) {
         <div key={post.id} className="post-container">
 
             <div className='post-votes'>
-                <div className={`vote-arrow-container vote-up`}><i className="fa-solid fa-arrow-up" /></div>
-                <span className=''><small>{post.numvotes || 0}</small></span>
-                <div className={`vote-arrow-container vote-down`}><i className="fa-solid fa-arrow-down" /></div>
+                <div className={`vote-arrow-container vote-up ${upvote}`}><i className="fa-solid fa-arrow-up" /></div>
+                <span className={voteCount}><small>{post.numvotes || 0}</small></span>
+                <div className={`vote-arrow-container vote-down ${downvote}`}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
 

@@ -38,6 +38,12 @@
 .vote-down:hover {
     color:blue;
 }
+.red {
+    color: red;
+}
+.blue {
+    color: blue;
+}
 
 
 .post-content {
