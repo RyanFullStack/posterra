@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
 import OpenModalButton from "../OpenModalButton"
@@ -18,6 +18,9 @@ function PostContainer({ post, location, page, sort }) {
     const [title, setTitle] = useState(post?.post_title)
     const [body, setBody] = useState(post?.post_body)
     const [link, setLink] = useState(post?.ext_url)
+    const [votes, setVotes] = useState()
+    const [userVote, setUserVote] = useState(null)
+
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
         weekday: 'short',
@@ -34,6 +37,27 @@ function PostContainer({ post, location, page, sort }) {
     if (link?.length > 40) {
         shortLink = link.slice(0, 40) + '...'
     }
+
+    useEffect(() => {
+        const getVotes = async () => {
+            const res = await fetch(`/api/votes/${post?.id}`)
+            const data = await res.json()
+            if (data.votes) {
+                setVotes(data.votes)
+            }
+        }
+        getVotes()
+    }, [post])
+
+    useEffect(() => {
+        if (votes?.length) {
+            const userVoteObj = votes.find(vote => vote.user_id === sessionUser.id);
+            setUserVote(userVoteObj?.upvote);
+        } else {
+            setUserVote(null);
+        }
+    }, [votes, sessionUser.id]);
+
 
     const handleDelete = async () => {
         if (sessionUser.id <= 14 && post.id <= 80) {
