@@ -55,7 +55,7 @@ function PostInfo() {
     return (
         <div className="community-container">
             <div className="post-main-container">
-                <PostContainer post={post} />
+                <PostContainer post={post} location='post-info'/>
                 <div className="comments-container">
                     {comments.map(comment => {
                         return (
