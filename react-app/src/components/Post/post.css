@@ -29,6 +29,7 @@
 
 .vote-arrow-container:hover {
     background-color: rgb(230, 230, 230);
+    cursor: pointer;
 }
 
 .vote-up:hover {
@@ -56,6 +57,11 @@
     justify-content: flex-start;
     text-align: left;
     padding: .5rem;
+    cursor: pointer;
+}
+
+.comments-display:hover {
+    background-color: rgba(180, 180, 180, .8)
 }
 
 .post-footer {

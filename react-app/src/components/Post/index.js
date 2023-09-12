@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
 import OpenModalButton from "../OpenModalButton"
 import ConfirmDeleteModal from "../ConfirmDeleteModal"
@@ -24,6 +25,7 @@ function PostContainer({ post, location, page, sort }) {
     const [downvote, setDownvote] = useState('')
     const [voteCount, setVoteCount] = useState('')
     const [totalVotes, setTotalVotes] = useState(post.numvotes || 0)
+    const history = useHistory()
 
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
@@ -156,7 +158,7 @@ function PostContainer({ post, location, page, sort }) {
         }
     }
 
-    const handleUpvote = async() => {
+    const handleUpvote = async () => {
         if (!sessionUser) {
             window.alert('Must be logged in to vote!')
             return
@@ -164,7 +166,7 @@ function PostContainer({ post, location, page, sort }) {
         if (downvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/addupvote`)
-            setTotalVotes(prev => prev+2)
+            setTotalVotes(prev => prev + 2)
             setUpvote('red')
             setDownvote('')
             setVoteCount('red')
@@ -172,20 +174,20 @@ function PostContainer({ post, location, page, sort }) {
         }
         if (upvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
-            setTotalVotes(prev => prev-1)
+            setTotalVotes(prev => prev - 1)
             setUpvote('')
             setDownvote('')
             setVoteCount('')
         } else {
             await fetch(`/api/votes/${post.id}/addupvote`)
-            setTotalVotes(prev => prev+1)
+            setTotalVotes(prev => prev + 1)
             setUpvote('red')
             setDownvote('')
             setVoteCount('red')
         }
     }
 
-    const handleDownvote = async() => {
+    const handleDownvote = async () => {
         if (!sessionUser) {
             window.alert('Must be logged in to vote!')
             return
@@ -193,7 +195,7 @@ function PostContainer({ post, location, page, sort }) {
         if (upvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/adddownvote`)
-            setTotalVotes(prev => prev-2)
+            setTotalVotes(prev => prev - 2)
             setUpvote('')
             setDownvote('blue')
             setVoteCount('blue')
@@ -201,19 +203,22 @@ function PostContainer({ post, location, page, sort }) {
         }
         if (downvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
-            setTotalVotes(prev => prev+1)
+            setTotalVotes(prev => prev + 1)
             setUpvote('')
             setDownvote('')
             setVoteCount('')
         } else {
             await fetch(`/api/votes/${post.id}/adddownvote`)
-            setTotalVotes(prev => prev-1)
+            setTotalVotes(prev => prev - 1)
             setUpvote('')
             setDownvote('blue')
             setVoteCount('blue')
         }
     }
 
+    const handlePostRedirect = () => {
+        history.push(`/posts/${post.id}`)
+    }
 
     return (
         <div key={post.id} className="post-container">
@@ -225,7 +230,7 @@ function PostContainer({ post, location, page, sort }) {
             </div>
 
 
-            <div className='post-content'>
+            <div className='post-content' onClick={handlePostRedirect}>
                 {!editMode ? <>
                     <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic' />} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic' />} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
                     <div id='break-word'>
@@ -268,13 +273,15 @@ function PostContainer({ post, location, page, sort }) {
                 <div className='edit-buttons'>
                     {!editMode && (link?.toLowerCase().endsWith('.jpg') || link?.toLowerCase().endsWith('.jpeg') || link?.toLowerCase().endsWith('.png') || link?.toLowerCase().endsWith('.gif') || link?.toLowerCase().includes('drive.google'))
                         ? <div className='post-image'><img src={link} alt={title}></img></div> : <div><a href={link} target='_blank' rel="noreferrer">{shortLink ? shortLink : link}</a></div>}
+                    <div className='edit-buttons' onClick={e=>{e.stopPropagation()}}>
                     {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleSubmit}>Submit Changes</button> : null}
                     {sessionUser?.id === owner.id && editMode ? <button id='editpost' onClick={handleCancel}>Cancel</button> : null}
+                    </div>
                 </div>
 
-                <div className='post-footer'>
-                    <div><i className="fa-regular fa-message" /></div>
-                    <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span>
+                <div className='post-footer' onClick={e=>{e.stopPropagation()}}>
+                    <div className='comments-display'><i className="fa-regular fa-message" />&nbsp;
+                    <span><small>{post.numcomments || 0} {post.numcomments === 1 ? 'Comment' : 'Comments'}</small></span></div>
 
                     {sessionUser?.id === owner.id ?
                         <>
