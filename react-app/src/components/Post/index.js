@@ -157,6 +157,10 @@ function PostContainer({ post, location, page, sort }) {
     }
 
     const handleUpvote = async() => {
+        if (!sessionUser) {
+            window.alert('Must be logged in to vote!')
+            return
+        }
         if (downvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/addupvote`)
@@ -182,6 +186,10 @@ function PostContainer({ post, location, page, sort }) {
     }
 
     const handleDownvote = async() => {
+        if (!sessionUser) {
+            window.alert('Must be logged in to vote!')
+            return
+        }
         if (upvote) {
             await fetch(`/api/votes/${post.id}/deletevote`)
             await fetch(`/api/votes/${post.id}/adddownvote`)
