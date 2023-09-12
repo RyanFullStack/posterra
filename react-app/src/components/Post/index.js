@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkDeletePost, thunkEditPost } from '../../store/post'
 import OpenModalButton from "../OpenModalButton"
@@ -18,6 +18,13 @@ function PostContainer({ post, location, page, sort }) {
     const [title, setTitle] = useState(post?.post_title)
     const [body, setBody] = useState(post?.post_body)
     const [link, setLink] = useState(post?.ext_url)
+    const [votes, setVotes] = useState()
+    const [userVote, setUserVote] = useState(null)
+    const [upvote, setUpvote] = useState('')
+    const [downvote, setDownvote] = useState('')
+    const [voteCount, setVoteCount] = useState('')
+    const [totalVotes, setTotalVotes] = useState(post.numvotes || 0)
+
     const time = new Date(created)
     const dispTime = time.toLocaleTimeString("en-US", {
         weekday: 'short',
@@ -34,6 +41,53 @@ function PostContainer({ post, location, page, sort }) {
     if (link?.length > 40) {
         shortLink = link.slice(0, 40) + '...'
     }
+
+    useEffect(() => {
+        const getVotes = async () => {
+            const res = await fetch(`/api/votes/${post?.id}`)
+            const data = await res.json()
+            if (data.votes) {
+                setVotes(data.votes)
+            }
+        }
+        getVotes()
+    }, [post])
+
+    useEffect(() => {
+        if (votes?.length) {
+            const userVoteObj = votes.find(vote => vote?.user_id === sessionUser?.id);
+            setUserVote(userVoteObj?.upvote);
+        } else {
+            setUserVote(null);
+        }
+        return function () {
+            setUserVote(null)
+        }
+    }, [votes, sessionUser]);
+
+    useEffect(() => {
+        if (userVote) {
+            setUpvote('red')
+            setVoteCount('red')
+            setDownvote('')
+        }
+        if (userVote === false) {
+            setDownvote('blue')
+            setVoteCount('blue')
+            setUpvote('')
+        }
+        if (userVote === null) {
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        }
+        return function () {
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        }
+    }, [userVote, sessionUser])
+
 
     const handleDelete = async () => {
         if (sessionUser.id <= 14 && post.id <= 80) {
@@ -102,14 +156,64 @@ function PostContainer({ post, location, page, sort }) {
         }
     }
 
+    const handleUpvote = async() => {
+        if (downvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            await fetch(`/api/votes/${post.id}/addupvote`)
+            setTotalVotes(prev => prev+2)
+            setUpvote('red')
+            setDownvote('')
+            setVoteCount('red')
+            return
+        }
+        if (upvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            setTotalVotes(prev => prev-1)
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        } else {
+            await fetch(`/api/votes/${post.id}/addupvote`)
+            setTotalVotes(prev => prev+1)
+            setUpvote('red')
+            setDownvote('')
+            setVoteCount('red')
+        }
+    }
+
+    const handleDownvote = async() => {
+        if (upvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            await fetch(`/api/votes/${post.id}/adddownvote`)
+            setTotalVotes(prev => prev-2)
+            setUpvote('')
+            setDownvote('blue')
+            setVoteCount('blue')
+            return
+        }
+        if (downvote) {
+            await fetch(`/api/votes/${post.id}/deletevote`)
+            setTotalVotes(prev => prev+1)
+            setUpvote('')
+            setDownvote('')
+            setVoteCount('')
+        } else {
+            await fetch(`/api/votes/${post.id}/adddownvote`)
+            setTotalVotes(prev => prev-1)
+            setUpvote('')
+            setDownvote('blue')
+            setVoteCount('blue')
+        }
+    }
+
 
     return (
         <div key={post.id} className="post-container">
 
             <div className='post-votes'>
-                <div className={`vote-arrow-container vote-up`}><i className="fa-solid fa-arrow-up" /></div>
-                <span className=''><small>{post.numvotes || 0}</small></span>
-                <div className={`vote-arrow-container vote-down`}><i className="fa-solid fa-arrow-down" /></div>
+                <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
+                <span className={voteCount}><small>{totalVotes}</small></span>
+                <div className={`vote-arrow-container vote-down ${downvote}`} onClick={handleDownvote}><i className="fa-solid fa-arrow-down" /></div>
             </div>
 
 
