@@ -72,7 +72,8 @@ function PostInfo() {
             'comment_body': userComment
         }
         const res = await dispatch(thunkAddComment(data))
-
+        await dispatch(thunkGetSinglePost(postId))
+        setUserComment('')
 
         if (res.errors) {
             setErrors(res.errors)
