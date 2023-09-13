@@ -27,3 +27,9 @@
     margin-top: 10px;
     font-size: .9rem;
 }
+
+.comment-votes {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0 1rem 15px;
+}

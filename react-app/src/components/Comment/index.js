@@ -123,7 +123,7 @@ function CommentContainer({ comment }) {
             {comment.edited ? ' *edited' : null}
             </div>
             <div className="comment-body-content">{comment.comment_body}</div>
-            <div className='post-votes'>
+            <div className='comment-votes'>
                 <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
                 <span className={voteCount}><small>{totalVotes}</small></span>
                 <div className={`vote-arrow-container vote-down ${downvote}`} onClick={handleDownvote}><i className="fa-solid fa-arrow-down" /></div>
