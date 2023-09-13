@@ -35,5 +35,7 @@ class Comment(db.Model):
             'edited': self.edited,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'owner': self.owner.to_dict()
+            'owner': self.owner.to_dict(),
+            'votes': [vote.to_dict() for vote in self.votes],
+            'numvotes': sum(1 for vote in self.votes if vote.upvote) - sum(1 for vote in self.votes if not vote.upvote)
         }

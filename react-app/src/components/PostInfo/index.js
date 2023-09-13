@@ -59,7 +59,7 @@ function PostInfo() {
                 <div className="comments-container">
                     {comments.map(comment => {
                         return (
-                            <CommentContainer comment={comment} />
+                            <CommentContainer comment={comment} key={comment.id}/>
                         )
                     })}
                 </div>
