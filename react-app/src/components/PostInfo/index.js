@@ -2,6 +2,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkGetSinglePost } from "../../store/post";
+import { thunkGetAllComments, thunkAddComment } from "../../store/comment";
 import CommentContainer from "../Comment";
 import PostContainer from "../Post";
 import Loading from "../Loading";
@@ -11,18 +12,20 @@ function PostInfo() {
     const { postId } = useParams()
     const [loaded, setLoaded] = useState(false)
     const [found, setFound] = useState(false)
-    const [comments, setComments] = useState([])
     const [userComment, setUserComment] = useState('')
     const [errors, setErrors] = useState({})
     const dispatch = useDispatch()
     const history = useHistory()
 
     const post = useSelector(state => state.posts.singlePost)
+    const currentUser = useSelector(state => state.session.user)
+    const comments = useSelector(state => state.comments.allComments)
 
 
     useEffect(() => {
         const data = async () => {
             const res = await dispatch(thunkGetSinglePost(postId))
+            await dispatch(thunkGetAllComments(postId))
             setLoaded(true)
             if (res.id) {
                 setFound(true)
@@ -36,18 +39,7 @@ function PostInfo() {
         }
     }, [dispatch, postId])
 
-    useEffect(() => {
-        const data = async () => {
-            const res = await fetch(`/api/comments/${postId}`)
-            const com = await res.json()
-            if (com.comments) {
-                setComments(com.comments)
-            } else setComments([])
-        }
-        data()
-    }, [postId])
-
-    useEffect(() => {
+      useEffect(() => {
         if (userComment.length > 255) {
             setErrors({'length': 'Must be under 255 characters'})
         } else {
@@ -66,11 +58,25 @@ function PostInfo() {
     }
 
 
+    const handleAddComment = async() => {
+        if (!currentUser) {
+            window.alert('Must be logged in to comment!')
+        }
+        if (userComment.length < 2) {
+            setErrors({'length': 'Must more than 1 character'})
+            return
+        }
+        const data = {
+            'created_by': currentUser.id,
+            'post_id': parseInt(postId),
+            'comment_body': userComment
+        }
+        const res = await dispatch(thunkAddComment(data))
 
-    const handleAddComment = () => {
 
-
-
+        if (res.errors) {
+            setErrors(res.errors)
+        }
     }
 
 
@@ -81,7 +87,7 @@ function PostInfo() {
                 <div className="comments-container">
                     <input value={userComment} placeholder='Type a comment here' onChange={e=>setUserComment(e.target.value)}></input>
                     {errors.length && <p className='errors'>{errors.length}</p>}{userComment.length} / 255
-                    <button onClick={handleAddComment}>Add Comment</button>
+                    <button onClick={handleAddComment} disabled={userComment.length > 255}>Add Comment</button>
                     {comments.map(comment => {
                         return (
                             <CommentContainer comment={comment} key={comment.id}/>
