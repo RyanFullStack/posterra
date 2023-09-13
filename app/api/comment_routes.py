@@ -39,4 +39,9 @@ def get_comments(id):
     if not comments:
         return {'message': 'No comments found'}
 
-    return {'comments': [comment.to_dict() for comment in comments]}
+    sort = request.args.get('sort', 'newest')
+
+    if sort == 'newest' or not sort:
+        sorted_comments = sorted(comments, key=lambda comment: comment.to_dict()['created_at'], reverse=True)
+
+    return {'comments': [comment.to_dict() for comment in sorted_comments]}

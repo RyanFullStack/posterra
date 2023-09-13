@@ -39,13 +39,13 @@ function PostInfo() {
         }
     }, [dispatch, postId])
 
-      useEffect(() => {
+    useEffect(() => {
         if (userComment.length > 255) {
-            setErrors({'length': 'Must be under 255 characters'})
+            setErrors({ 'length': 'Must be under 255 characters' })
         } else {
             setErrors({})
         }
-        return function() {
+        return function () {
             setErrors({})
         }
     }, [userComment])
@@ -58,12 +58,13 @@ function PostInfo() {
     }
 
 
-    const handleAddComment = async() => {
+    const handleAddComment = async () => {
         if (!currentUser) {
             window.alert('Must be logged in to comment!')
+            return
         }
-        if (userComment.length < 2) {
-            setErrors({'length': 'Must more than 1 character'})
+        if (userComment.length < 1) {
+            setErrors({ 'length': 'Must be at least 1 character' })
             return
         }
         const data = {
@@ -84,14 +85,20 @@ function PostInfo() {
     return (
         <div className="community-container">
             <div className="post-main-container">
-                <PostContainer post={post} location='post-info'/>
+                <PostContainer post={post} location='post-info' />
                 <div className="comments-container">
-                    <input value={userComment} placeholder='Type a comment here' onChange={e=>setUserComment(e.target.value)}></input>
-                    {errors.length && <p className='errors'>{errors.length}</p>}{userComment.length} / 255
-                    <button onClick={handleAddComment} disabled={userComment.length > 255}>Add Comment</button>
+                    <div className="comment-box">
+                        {currentUser ? `Comment as ${currentUser.username}` : 'Login to comment'}
+                        <textarea id='comment-input' value={userComment} placeholder='Share your thoughts...' onChange={e => setUserComment(e.target.value)}></textarea>
+                        <div id='comment-length'>{errors.length && <span className='errors'>{errors.length}</span>}{userComment.length} / 255
+                        </div>
+                        <div id='comment-button-container'>
+                            <button id='add-comment-button' onClick={handleAddComment} disabled={userComment.length > 255 || !userComment.length}>Comment</button>
+                        </div>
+                    </div>
                     {comments.map(comment => {
                         return (
-                            <CommentContainer comment={comment} key={comment.id}/>
+                            <CommentContainer comment={comment} key={comment.id} />
                         )
                     })}
                 </div>

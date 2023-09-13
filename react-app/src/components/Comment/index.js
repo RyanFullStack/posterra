@@ -122,7 +122,7 @@ function CommentContainer({ comment }) {
             <span id='post-info'>{dispTime}</span>
             {comment.edited ? ' *edited' : null}
             </div>
-            <div className="comment-body-content">{comment.comment_body}</div>
+            <div className="comment-body-content" id='break-word'>{comment.comment_body}</div>
             <div className='comment-votes'>
                 <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
                 <span className={voteCount}><small>{totalVotes}</small></span>
