@@ -4,6 +4,7 @@ from app.models import Community, Post, db
 from app.forms import CommunityForm
 from datetime import datetime
 import random
+import math
 
 community_routes = Blueprint('communities', __name__)
 
@@ -28,12 +29,16 @@ def community_posts(id):
     """
     Query for all posts within a community
     """
-    sort = request.args.get('sort', 'best')
+    page = int(request.args.get('page', 1))
+
+    sort = request.args.get('sort', 'newest')
 
     community = Community.query.get(id)
 
-    posts = community.posts
+    if not community:
+        return {'message': 'community not found'}
 
+    posts = community.posts
 
     if sort == 'best' or not sort:
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['numvotes'], reverse=True)
@@ -43,15 +48,15 @@ def community_posts(id):
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=True)
     if sort == 'oldest':
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=False)
-    if sort == 'random':
-        random_sort = list(posts)
-        random.shuffle(random_sort)
-        sorted_posts = random_sort
 
-    if not community:
-        return {'message': 'community not found'}
+    start_idx = (page - 1) * 10
+    end_idx = start_idx + 10
+    paginated_posts = sorted_posts[start_idx:end_idx]
 
-    return {'posts': [post.to_dict() for post in sorted_posts]}
+
+    return {'posts': [post.to_dict() for post in paginated_posts],
+            'totalPages': math.ceil(len(posts) / 10)
+            }
 
 
 @community_routes.route('/new', methods=['POST'])

@@ -45,8 +45,8 @@ export const getUserInfo = (id) => async (dispatch) => {
     }
 }
 
-export const thunkGetCommunityPosts = (id, sort) => async (dispatch) => {
-    const res = await fetch(`/api/communities/${id}/posts?sort=${sort}`)
+export const thunkGetCommunityPosts = (id, sort, page) => async (dispatch) => {
+    const res = await fetch(`/api/communities/${id}/posts?sort=${sort}&page=${page}`)
 
     if (res.ok) {
         const data = await res.json()

@@ -31,19 +31,15 @@ def posts():
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=True)
     if sort == 'oldest':
         sorted_posts = sorted(posts, key=lambda post: post.to_dict()['created_at'], reverse=False)
-    # if sort == 'random':
-    #     random_sort = list(posts)
-    #     random.shuffle(random_sort)
-    #     sorted_posts = random_sort
 
 
-    start_idx = (page - 1) * 15
-    end_idx = start_idx + 15
+    start_idx = (page - 1) * 10
+    end_idx = start_idx + 10
     paginated_posts = sorted_posts[start_idx:end_idx]
 
 
     return {'posts': [post.to_dict() for post in paginated_posts],
-            'totalPages': math.ceil(len(posts) / 15)
+            'totalPages': math.ceil(len(posts) / 10)
             }
 
 @post_routes.route('/new', methods=['POST'])
