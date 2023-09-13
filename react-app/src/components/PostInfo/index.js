@@ -59,16 +59,16 @@ function PostInfo() {
                 <div className="comments-container">
                     {comments.map(comment => {
                         return (
-                            <CommentContainer comment={comment} />
+                            <CommentContainer comment={comment} key={comment.id}/>
                         )
                     })}
                 </div>
             </div>
 
-            <div className="community-info-container">
+            <div className="community-info-container pointer" onClick={handleRedirect}>
                 {post.community.banner_pic ? <img id='community-info-banner-pic' src={post.community.banner_pic} alt='community banner pic' /> : null}
                 <div className='community-info-contents'>
-                    <div id='break-word' onClick={handleRedirect} className="pointer">
+                    <div id='break-word'>
                         <b>{post.community?.name}</b><br />
                         <img id='community-info-pic' src={post.community?.logo_pic} alt={post.community?.name} />
                         <p>{post.community?.description}</p>
