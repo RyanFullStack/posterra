@@ -12,6 +12,8 @@ function PostInfo() {
     const [loaded, setLoaded] = useState(false)
     const [found, setFound] = useState(false)
     const [comments, setComments] = useState([])
+    const [userComment, setUserComment] = useState('')
+    const [errors, setErrors] = useState({})
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -45,6 +47,17 @@ function PostInfo() {
         data()
     }, [postId])
 
+    useEffect(() => {
+        if (userComment.length > 255) {
+            setErrors({'length': 'Must be under 255 characters'})
+        } else {
+            setErrors({})
+        }
+        return function() {
+            setErrors({})
+        }
+    }, [userComment])
+
     if (!loaded) return <Loading />
     if (!found) return <h2><center>Post not found!</center></h2>
 
@@ -52,11 +65,23 @@ function PostInfo() {
         history.push(`/communities/${post.community.id}`)
     }
 
+
+
+    const handleAddComment = () => {
+
+
+
+    }
+
+
     return (
         <div className="community-container">
             <div className="post-main-container">
                 <PostContainer post={post} location='post-info'/>
                 <div className="comments-container">
+                    <input value={userComment} placeholder='Type a comment here' onChange={e=>setUserComment(e.target.value)}></input>
+                    {errors.length && <p className='errors'>{errors.length}</p>}{userComment.length} / 255
+                    <button onClick={handleAddComment}>Add Comment</button>
                     {comments.map(comment => {
                         return (
                             <CommentContainer comment={comment} key={comment.id}/>
