@@ -17,7 +17,7 @@ function PostContainer({ post, location, page, sort }) {
     const [editMode, setEditMode] = useState(false)
     const [errors, setErrors] = useState({});
     const [title, setTitle] = useState(post?.post_title)
-    const [body, setBody] = useState(post?.post_body)
+    const [body, setBody] = useState(post?.post_body || '')
     const [link, setLink] = useState(post?.ext_url)
     const [votes, setVotes] = useState()
     const [userVote, setUserVote] = useState(null)
@@ -109,7 +109,7 @@ function PostContainer({ post, location, page, sort }) {
 
     const handleCancel = async () => {
         setTitle(post?.post_title)
-        setBody(post?.post_body)
+        setBody(post?.post_body || '')
         setLink(post?.ext_url)
         setEditMode(false)
     }
@@ -235,7 +235,7 @@ function PostContainer({ post, location, page, sort }) {
 
             <div className='post-content' onClick={handlePostRedirect}>
                 {!editMode ? <>
-                    <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic' />} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic' />} u/{owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
+                    <div className='posted-by-container'><small><a href={`/communities/${community.id}`}>{<img id='posted-by-small-pic' src={community.logo_pic} alt='Community Logo Pic' />} {community.name}</a> • <span id='post-info'>Posted by {<img id='posted-by-small-pic' src={owner.profile_pic} alt='User Profile Pic' />} {owner.username} on {dispTime} {edited ? '*edited' : null}</span></small></div>
                     <div id='break-word'>
                         <h4>{title}</h4>
                         <div><small>{body}</small></div>
