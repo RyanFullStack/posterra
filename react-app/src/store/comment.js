@@ -29,7 +29,7 @@ export const thunkAddComment = (data) => async(dispatch) => {
 
 
 export const thunkEditComment = (id, data) => async(dispatch) => {
-    console.log(id, data)
+    
     const res = await fetch(`/api/comments/${id}/edit`, {
         method: 'PUT',
         headers: {

@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 650px;
+    width: 800px;
     background-color: rgb(255, 255, 255);
     border-radius: .1rem;
-    outline: .5px solid rgba(180, 180, 180, .8);
+    /* outline: .5px solid rgba(180, 180, 180, .8); */
 }
 
 .comment-box {
