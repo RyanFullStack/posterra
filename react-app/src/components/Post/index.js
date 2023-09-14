@@ -225,9 +225,9 @@ function PostContainer({ post, location, page, sort }) {
     }
 
     return (
-        <div key={post.id} className="post-container">
+        <div key={post.id} className={location === 'post-info' ? 'post-info-container' : "post-container"}>
 
-            <div className='post-votes'>
+            <div className={location === 'post-info' ? 'post-info-votes' : 'post-votes'}>
                 <div className={`vote-arrow-container vote-up ${upvote}`} onClick={handleUpvote}><i className="fa-solid fa-arrow-up" /></div>
                 <span className={voteCount}><small>{totalVotes}</small></span>
                 <div className={`vote-arrow-container vote-down ${downvote}`} onClick={handleDownvote}><i className="fa-solid fa-arrow-down" /></div>
