@@ -7,14 +7,14 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal"
 import isUrl from 'is-url'
 import './post.css'
 
-function PostContainer({ post, location, page, sort }) {
+function PostContainer({ post, location, page, sort, edit }) {
     const edited = post?.edited
     const created = post?.created_at
     const owner = post?.owner
     const community = post?.community
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch()
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(edit)
     const [errors, setErrors] = useState({});
     const [title, setTitle] = useState(post?.post_title)
     const [body, setBody] = useState(post?.post_body || '')
@@ -104,6 +104,10 @@ function PostContainer({ post, location, page, sort }) {
     }
 
     const handleEdit = async () => {
+        if (location === 'home' || location === 'community') {
+            history.push(`/posts/${post.id}/?edit=true`)
+            return
+        }
         setErrors({})
         setEditMode(true)
     }
