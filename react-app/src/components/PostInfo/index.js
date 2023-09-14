@@ -1,4 +1,4 @@
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkGetSinglePost } from "../../store/post";
@@ -16,10 +16,28 @@ function PostInfo() {
     const [errors, setErrors] = useState({})
     const dispatch = useDispatch()
     const history = useHistory()
+    const location = useLocation()
+    const [editMode, setEditMode] = useState(false)
 
     const post = useSelector(state => state.posts.singlePost)
     const currentUser = useSelector(state => state.session.user)
     const comments = useSelector(state => state.comments.allComments || [])
+
+
+    const getEditQueryParam = () => {
+        const queryParams = new URLSearchParams(location.search);
+        return queryParams.get("edit");
+    }
+
+    useEffect(() => {
+        if (loaded) {
+            const isEdit = getEditQueryParam() === "true";
+            if (isEdit && post.created_by === currentUser.id) {
+                setEditMode(true)
+            }
+        }
+    }, [location.search, loaded]);
+
 
 
     useEffect(() => {
@@ -85,7 +103,7 @@ function PostInfo() {
     return (
         <div className="community-container">
             <div className="post-main-container">
-                <PostContainer post={post} location='post-info' page={1} sort={'newest'}/>
+                <PostContainer post={post} location='post-info' page={1} sort={'newest'} edit={editMode} />
                 <div className="comments-container">
                     <div className="comment-box">
                         {currentUser ? `Comment as ${currentUser.username}` : 'Login to comment'}
