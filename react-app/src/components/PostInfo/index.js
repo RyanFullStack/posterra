@@ -32,7 +32,7 @@ function PostInfo() {
     useEffect(() => {
         if (loaded) {
             const isEdit = getEditQueryParam() === "true";
-            if (isEdit && post.created_by === currentUser.id) {
+            if (isEdit && currentUser && post.created_by === currentUser.id) {
                 setEditMode(true)
             }
         }
