@@ -73,7 +73,6 @@ export const thunkCreatePost = (data) => async (dispatch) => {
     })
     if (res.ok) {
         const data = await res.json();
-        dispatch(thunkGetCommunityPosts(data.community_id, 'newest', 1))
         return data
     } else {
         return res

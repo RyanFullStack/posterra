@@ -4,7 +4,7 @@ from faker import Faker
 from datetime import datetime
 fake = Faker()
 start_date = datetime(year=2023, month=6, day=1)
-end_date = datetime.now()
+end_date = datetime(year=2023, month=9, day=1)
 
 
 def seed_posts():

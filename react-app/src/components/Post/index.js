@@ -95,6 +95,7 @@ function PostContainer({ post, location, page, sort }) {
         if (sessionUser.id <= 14 && post.id <= 80) {
             window.alert('Demo User cant delete exisiting post. Please create your own.')
         } else {
+
             await dispatch(thunkDeletePost(post.id, community.id, location, sort, page))
             if (location === 'post-info') {
                 history.push(`/communities/${community.id}`)

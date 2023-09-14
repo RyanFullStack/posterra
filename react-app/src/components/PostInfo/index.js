@@ -85,7 +85,7 @@ function PostInfo() {
     return (
         <div className="community-container">
             <div className="post-main-container">
-                <PostContainer post={post} location='post-info' />
+                <PostContainer post={post} location='post-info' page={1} sort={'newest'}/>
                 <div className="comments-container">
                     <div className="comment-box">
                         {currentUser ? `Comment as ${currentUser.username}` : 'Login to comment'}
