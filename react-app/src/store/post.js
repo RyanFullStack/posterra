@@ -120,7 +120,7 @@ export const thunkDeletePost = (post_id, community_id, location, sort, page) => 
 
     if (res.ok) {
         const data = await res.json();
-        console.log(location)
+
         if (location === 'home') {
             dispatch(thunkGetAllPosts(page, sort))
         }
