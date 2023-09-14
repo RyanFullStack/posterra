@@ -148,7 +148,7 @@ function PostContainer({ post, location, page, sort }) {
                 community_id: community.id,
                 ext_url: link
             }
-            console.log(page)
+
             const response = await dispatch(thunkEditPost(community.id, post.id, data, location, page, sort))
 
             if (response.errors) {
