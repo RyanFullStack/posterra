@@ -148,7 +148,7 @@ function PostContainer({ post, location, page, sort }) {
                 community_id: community.id,
                 ext_url: link
             }
-
+            console.log(page)
             const response = await dispatch(thunkEditPost(community.id, post.id, data, location, page, sort))
 
             if (response.errors) {
@@ -249,7 +249,8 @@ function PostContainer({ post, location, page, sort }) {
                             name='title'
                             value={title}
                             type="text"
-                            onChange={(e) => setTitle(e.target.value)}
+                            onChange={(e) => {e.stopPropagation();setTitle(e.target.value)}}
+                            onClick={e=>e.stopPropagation()}
                             placeholder='title your post'
                         />
                         <label htmlFor='body'>Post Body{errors.body && <span className='errors'>: {errors.body}</span>}</label>
@@ -259,7 +260,8 @@ function PostContainer({ post, location, page, sort }) {
                             name='body'
                             type="text"
                             value={body}
-                            onChange={(e) => setBody(e.target.value)}
+                            onChange={(e) => {e.stopPropagation();setBody(e.target.value)}}
+                            onClick={e=>e.stopPropagation()}
                             placeholder='post body...'
                         />
                         <label htmlFor='ext_url'>Image URL/External Link{errors.url && <span className='errors'>: {errors.url}</span>}</label>
@@ -269,7 +271,8 @@ function PostContainer({ post, location, page, sort }) {
                             name='ext_url'
                             type="text"
                             value={link}
-                            onChange={(e) => setLink(e.target.value)}
+                            onChange={(e) => {e.stopPropagation();setLink(e.target.value)}}
+                            onClick={e=>e.stopPropagation()}
                             placeholder='http://www.yourlink.com.jpg.jpeg.png.gif'
                         />
                     </div>}

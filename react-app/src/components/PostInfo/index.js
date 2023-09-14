@@ -19,7 +19,7 @@ function PostInfo() {
 
     const post = useSelector(state => state.posts.singlePost)
     const currentUser = useSelector(state => state.session.user)
-    const comments = useSelector(state => state.comments.allComments)
+    const comments = useSelector(state => state.comments.allComments || [])
 
 
     useEffect(() => {
@@ -90,7 +90,7 @@ function PostInfo() {
                     <div className="comment-box">
                         {currentUser ? `Comment as ${currentUser.username}` : 'Login to comment'}
                         <textarea id='comment-input' value={userComment} placeholder='Share your thoughts...' onChange={e => setUserComment(e.target.value)}></textarea>
-                        <div id='comment-length'>{errors.length && <span className='errors'>{errors.length}</span>}{userComment.length} / 255
+                        <div id='comment-length'>{errors.length && <span className='errors'>{errors.length}</span>}{userComment.length > 255 ? <span className="red">{userComment.length} / 255</span> : <span>{userComment.length} / 255</span>}
                         </div>
                         <div id='comment-button-container'>
                             <button id='add-comment-button' onClick={handleAddComment} disabled={userComment.length > 255 || !userComment.length}>Comment</button>
