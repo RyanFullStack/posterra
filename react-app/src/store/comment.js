@@ -27,6 +27,43 @@ export const thunkAddComment = (data) => async(dispatch) => {
     }
 }
 
+
+export const thunkEditComment = (id, data) => async(dispatch) => {
+    console.log(id, data)
+    const res = await fetch(`/api/comments/${id}/edit`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            created_by: data.created_by,
+            post_id: data.post_id,
+            comment_body: data.comment_body
+        })
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(thunkGetAllComments(data.post_id))
+        return data
+    } else {
+        return res
+    }
+}
+
+export const thunkDeleteComment = (id, postId) => async(dispatch) => {
+    const res = await fetch(`/api/comments/${id}/delete`, {
+        method: 'DELETE'
+    })
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(thunkGetAllComments(postId))
+        return data
+    } else {
+        return res
+    }
+}
+
 export const thunkGetAllComments = (id) => async(dispatch) => {
     const res = await fetch(`/api/comments/${id}`)
     if (res.ok) {

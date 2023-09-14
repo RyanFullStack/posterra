@@ -1,5 +1,5 @@
 # Posterra
-      
+
 Posterra is a community based platform inspired by Reddit.
 
 Check out [Posterra](https://pos-terra.onrender.com/)
@@ -18,7 +18,7 @@ Check out [Posterra](https://pos-terra.onrender.com/)
 ![home](https://ryanerickson.netlify.app/images/Posterra.png)
 
 
-# Features 
+# Features
 
 ## Communities
 * Users can create a Community
@@ -33,8 +33,6 @@ Check out [Posterra](https://pos-terra.onrender.com/)
 * Users can delete their Post
 
 
-## Future Features
-
 ## Comments
 * Users can create Comments on a post
 * Users can view all Comments
@@ -46,6 +44,8 @@ Check out [Posterra](https://pos-terra.onrender.com/)
 * Users can view all Votes
 * Users can update their Vote
 * Users can delete their Vote
+
+## Future Features
 
 ## Awards
 * Users can give Awards for a post

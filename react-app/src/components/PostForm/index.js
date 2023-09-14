@@ -61,14 +61,14 @@ function PostForm() {
             ext_url
         }
 
-        const response = await dispatch(thunkCreatePost(data, 'newest'))
+        const response = await dispatch(thunkCreatePost(data))
 
         if (response.errors) {
             const serverErrors = {}
             serverErrors.serverErrors = response.errors
             setErrors(serverErrors)
         } else {
-            history.push(`/communities/${communityId}/?sort=newest`)
+            history.push(`/posts/${response.id}`)
         }
     }
 

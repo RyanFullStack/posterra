@@ -75,6 +75,9 @@ def edit_post(id):
     """
     post = Post.query.get(id)
 
+    if not post:
+        return {'message': 'post not found'}
+
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
