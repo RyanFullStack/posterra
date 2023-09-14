@@ -73,7 +73,7 @@ export const thunkCreatePost = (data) => async (dispatch) => {
     })
     if (res.ok) {
         const data = await res.json();
-        dispatch(thunkGetCommunityPosts(data.community_id, 'newest'))
+        dispatch(thunkGetCommunityPosts(data.community_id, 'newest', 1))
         return data
     } else {
         return res
@@ -104,7 +104,7 @@ export const thunkEditPost = (communityId, postId, data, location, page, sort) =
             dispatch(thunkGetSinglePost(postId))
         }
         else {
-            dispatch(thunkGetCommunityPosts(communityId, sort))
+            dispatch(thunkGetCommunityPosts(communityId, sort, page))
         }
         return data
     } else {
@@ -120,11 +120,12 @@ export const thunkDeletePost = (post_id, community_id, location, sort, page) => 
 
     if (res.ok) {
         const data = await res.json();
+
         if (location === 'home') {
             dispatch(thunkGetAllPosts(page, sort))
         }
         else {
-            dispatch(thunkGetCommunityPosts(community_id, sort))
+            dispatch(thunkGetCommunityPosts(community_id, sort, page))
         }
         return data
     } else {

@@ -8,6 +8,53 @@
     outline: .5px solid rgba(180, 180, 180, .8);
 }
 
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 3rem 5px 3rem;
+}
+
+#comment-length {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: -30px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: -25px;
+}
+
+#comment-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 5px;
+}
+
+#add-comment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 1.6rem;
+    border-radius: .5rem;
+    background-color: transparent;
+}
+
+#add-comment-button:hover {
+    background-color: rgba(224, 224, 224, 0.8);
+    cursor: pointer;
+}
+
+#comment-input {
+    margin: 5px;
+    width: 100%;
+    height: 8rem;
+    align-self: center;
+}
+
 .single-comment {
     display: flex;
     flex-direction: column;

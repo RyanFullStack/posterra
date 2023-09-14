@@ -56,10 +56,7 @@ function Community() {
     const handleOldest = () => {
         setCurrentSort('oldest')
     }
-    // const handleRandom = () => {
-    //     dispatch(thunkGetCommunityPosts(communityId, 'random'))
-    //     setCurrentSort('random')
-    // }
+
     const handleBack = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1)
@@ -86,14 +83,16 @@ function Community() {
                 </div>
                 {communityPosts.posts.map(post => {
                     return (
-                        <PostContainer post={post} key={post.id} sort={currentSort} location={'community'}/>
+                        <PostContainer post={post} key={post.id} sort={currentSort} location={'community'} page={currentPage} />
                     )
                 })}
-                <div className="location-buttons">
-                    <div className="location-gap">{currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
-                    {currentPage === communityPosts.totalPages ? null : <button className="next-previous" onClick={handleNext}>Next</button>}</div>
-                    <div className="page-counter"><small>{currentPage} / {communityPosts.totalPages}</small></div>
-                </div>
+                {!communityPosts.posts.length ? null :
+                    <div className="location-buttons">
+                        <div className="location-gap">{currentPage > 1 ? <button className="next-previous" id='previous-button' onClick={handleBack}>Previous</button> : null}
+                            {currentPage === communityPosts.totalPages ? null : <button className="next-previous" onClick={handleNext}>Next</button>}</div>
+                        <div className="page-counter"><small>{currentPage} / {communityPosts.totalPages}</small></div>
+                    </div>
+                }
             </div>
             <CommunityInfo />
         </div>
