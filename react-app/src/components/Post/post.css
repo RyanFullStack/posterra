@@ -169,3 +169,11 @@
     cursor: pointer;
     color: red;
 }
+
+@media screen and (max-width: 500px) {
+    .post-container img {
+        max-height: 250px;
+        width: auto;
+        max-width: 250px;
+    }
+}
