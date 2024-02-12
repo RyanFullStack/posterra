@@ -61,7 +61,7 @@ function Navigation({ isLoaded }) {
 			<div className='log-in-area'>
 
 				{isLoaded && sessionUser &&
-				<div className='log-in-container'><i onClick={handlePost} id='plus-post' title='Create Post' className="fa-solid fa-plus"></i>
+				<div id='log-in-container'><i onClick={handlePost} id='plus-post' title='Create Post' className="fa-solid fa-plus"></i>
 				<ProfileButton user={sessionUser} /></div>}
 
 

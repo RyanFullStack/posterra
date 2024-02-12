@@ -124,7 +124,7 @@
     flex-direction: column;
     box-sizing: border-box;
     max-height: 550px;
-    width: 650px;
+    width: 100%;
     align-items: center;
     text-align: center;
     background-color: rgb(255, 255, 255);
@@ -229,5 +229,14 @@
 @media screen and (max-width: 1000px) {
     .sidebar {
         display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-order-by {
+        display: none;
+    }
+    * {
+        font-size: .9rem;
     }
 }

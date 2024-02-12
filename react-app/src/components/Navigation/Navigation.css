@@ -121,7 +121,7 @@
   cursor: pointer;
 }
 
-.log-in-conatiner {
+#log-in-container {
   display: flex;
   flex-direction: row;
 }
