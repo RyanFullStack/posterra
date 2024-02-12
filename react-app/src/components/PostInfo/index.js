@@ -7,6 +7,7 @@ import CommentContainer from "../Comment";
 import PostContainer from "../Post";
 import Loading from "../Loading";
 import '../Comment/comment.css'
+import './postinfo.css'
 
 function PostInfo() {
     const { postId } = useParams()
@@ -101,8 +102,7 @@ function PostInfo() {
 
 
     return (
-        <div className="community-container">
-            <div className="post-main-container">
+        <div className="main-post-container">
                 <PostContainer post={post} location='post-info' page={1} sort={'newest'} edit={editMode} />
                 <div className="comments-container">
                     <div className="comment-box">
@@ -120,19 +120,6 @@ function PostInfo() {
                         )
                     })}
                 </div>
-            </div>
-
-            <div className="community-info-container pointer" onClick={handleRedirect}>
-                {post.community.banner_pic ? <img id='community-info-banner-pic' src={post.community.banner_pic} alt='community banner pic' /> : null}
-                <div className='community-info-contents'>
-                    <div id='break-word'>
-                        <b>{post.community?.name}</b><br />
-                        <img id='community-info-pic' src={post.community?.logo_pic} alt={post.community?.name} />
-                        <p>{post.community?.description}</p>
-                        <small>Created by: {<img id='posted-by-small-pic' src={post.owner.profile_pic} alt='User Profile Pic' />} u/{post.community.owner?.username}</small>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

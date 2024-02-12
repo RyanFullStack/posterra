@@ -15,6 +15,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 650px;
 }
 
 .home-info-container {
@@ -122,7 +124,7 @@
     flex-direction: column;
     box-sizing: border-box;
     max-height: 550px;
-    width: 650px;
+    width: 100%;
     align-items: center;
     text-align: center;
     background-color: rgb(255, 255, 255);
@@ -138,7 +140,7 @@
     justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
-    width: 650px;
+    width: 100%;
     height: 60px;
     background-color: white;
     border-radius: .3rem;
@@ -221,4 +223,24 @@
 }
 #ryan-profile {
     width: 120px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    * {
+        font-size: .9rem;
+    }
+    .post-order-by {
+        font-size: .7rem;
+    }
+    .post-order-by button {
+        font-size: .7rem;
+        height: 20px;
+    }
 }

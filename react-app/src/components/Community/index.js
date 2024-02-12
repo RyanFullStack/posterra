@@ -94,7 +94,9 @@ function Community() {
                     </div>
                 }
             </div>
-            <CommunityInfo />
+            <div className="community-info-hidden">
+                <CommunityInfo />
+            </div>
         </div>
     )
 }
