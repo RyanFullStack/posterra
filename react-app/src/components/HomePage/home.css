@@ -233,10 +233,14 @@
 }
 
 @media screen and (max-width: 500px) {
-    .post-order-by {
-        display: none;
-    }
     * {
         font-size: .9rem;
+    }
+    .post-order-by {
+        font-size: .7rem;
+    }
+    .post-order-by button {
+        font-size: .7rem;
+        height: 20px;
     }
 }
