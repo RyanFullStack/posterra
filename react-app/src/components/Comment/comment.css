@@ -98,3 +98,9 @@
     flex-direction: row;
     margin: 8px 0 1rem 15px;
 }
+
+@media screen and (max-width: 600px) {
+    #add-comment-button {
+        font-size: .7rem
+    }
+}
