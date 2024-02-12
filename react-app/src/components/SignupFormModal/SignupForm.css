@@ -1,0 +1,7 @@
+@media screen and (max-width:600px) {
+  .modal {
+    display: flex;
+    max-height: 50vh;
+    overflow-y: scroll;
+  }
+}
